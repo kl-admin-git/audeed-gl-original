@@ -1,0 +1,19 @@
+name: PHP + Docker + DB
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  update-repo:
+    runs-on: self-hosted
+    steps:
+      # Accede al contenedor y actualiza el repositorio
+      - name: Acceso al contenedor y pull
+        run: |
+          docker exec -u root audeed-global-mercadeo-ad-original-1 /bin/sh -c '
+            cd /var/www/audiid_gl &&
+            git checkout . &&
+            git pull origin main &&
+            echo Git Pull completado dentro del contenedor
+          '
