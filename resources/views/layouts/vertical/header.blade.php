@@ -6,7 +6,7 @@
     <div class="">
         <!--<a href="index" class="logo text-center">Admiria</a>-->
         <a href="{{route('index_cumplimiento_lista')}}" class="logo">
-            <img src="{{ URL::asset('vertical/assets/images/logo_horizontal_white.svg') }}" height="65" alt="logo">
+            <img src="{{ URL::asset('vertical/assets/images/logo_horizontal_white.svg') }}" height="140" alt="logo">
         </a>
     </div>
 </div>

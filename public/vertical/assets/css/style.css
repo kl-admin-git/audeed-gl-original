@@ -409,7 +409,7 @@ code {
 .notification-list .noti-icon {
   font-size: 28px;
   vertical-align: middle;
-  color: #4FB648;
+  color: #F3A03F;
 }
 
 .notification-list .noti-icon-badge {
@@ -544,7 +544,7 @@ code {
   width: 240px;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
-  background: #44505c;
+  background: #F3A03F;
   position: absolute;
   z-index: 99;
 }
@@ -685,7 +685,7 @@ body.fixed-left .side-menu.left {
 }
 
 #sidebar-menu {
-  background-color: #44505c;
+  background-color: #F3A03F;
   padding-bottom: 50px;
   width: 100%;
 }
@@ -725,7 +725,7 @@ body.fixed-left .side-menu.left {
   color: white;
   display: block;
   padding: 12px 20px;
-  background-color: #44505c;
+  background-color: #F3A03F;
 }
 
 #sidebar-menu > ul > li > a:hover {
@@ -743,7 +743,7 @@ body.fixed-left .side-menu.left {
 }
 
 #sidebar-menu > ul > li.nav-active > a {
-  background-color: #44505c;
+  background-color: #F3A03F;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -931,7 +931,7 @@ body.fixed-left .side-menu.left {
 }
 
 .bg-muted {
-  background-color: #4FB648 !important;
+  background-color: #F3A03F !important;
 }
 
 .bg-white {
@@ -1608,7 +1608,7 @@ dt {
 }
 
 .icon-demo-content {
-  color: #4FB648;
+  color: #F3A03F;
 }
 
 .icon-demo-content i {
@@ -2238,7 +2238,7 @@ dt {
   height: auto;
   font-size: 25px;
   margin: 8px auto;
-  color: #4FB648;
+  color: #F3A03F;
   width: 35px;
 }
 

@@ -32,7 +32,7 @@
             </div>
 
             <div class="m-t-40 text-center">
-                <p class="text-white">© {{date('Y')}} Audiid <i class="mdi mdi-heart" style="color:#26ae9c"></i></p>
+                <p class="text-white">© {{date('Y')}} Audiid <i class="mdi mdi-heart" style="color:#F3A03F"></i></p>
             </div>
 
         

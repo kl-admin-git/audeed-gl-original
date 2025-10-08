@@ -1,10 +1,11 @@
 :root
 {
-    --colorPrimario:#44505c;
+    --colorPrimario:#F3A03F;
+    --colorPrimarioOpaco:#e4a154;
 }
 
 #topnav .topbar-main {
-    background-color: #58af42;
+    background-color: #F3A03F;
 }
 
 .ellipseText
@@ -82,7 +83,7 @@ table thead
     user-select: none;
   }
   .pagination .nav-btn {
-    background: linear-gradient(45deg, #519ce0, #519ce0);
+    background: linear-gradient(45deg, var(--colorPrimario), var(--colorPrimario));
     display: inline-block;
     padding: 12px 18px;
     color: #fff;
@@ -93,7 +94,7 @@ table thead
     transition: all 300ms ease;
   }
   .pagination .nav-btn:hover {
-      background: linear-gradient(11deg, #519ce0, #519ce0);
+      background: linear-gradient(11deg, var(--colorPrimario), var(--colorPrimario));
     text-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
   }
   .pagination .nav-btn.next {
@@ -639,23 +640,23 @@ table thead
 }
 
 .plan-card .plan-icon {
-  background: #50b848!important;
+  background: var(--colorPrimarioOpaco)!important;
 }
 
 .text-color-audeed
 {
-  color: #50b848!important;
+  color: var(--colorPrimarioOpaco)!important;
 }
 
 .btn-audeed:hover, .btn-audeed:focus, .btn-audeed:active, .btn-audeed.active, .btn-audeed.focus, .btn-audeed:active, .btn-audeed:focus, .btn-audeed:hover, .open > .dropdown-toggle.btn-audeed, .btn-outline-dark.active, .btn-outline-dark:active, .show > .btn-outline-dark.dropdown-toggle, .btn-outline-dark:hover {
-  background-color: #4d9e46!important;
-  border: 1px solid #4d9e46!important;
+  background-color: var(--colorPrimario)!important;
+  border: 1px solid var(--colorPrimario)!important;
   color: #ffffff;
 }
 
 .btn-audeed {
-  background-color: #50b848 !important;
-  border: 1px solid #50b848 !important;
+  background-color: var(--colorPrimarioOpaco) !important;
+  border: 1px solid var(--colorPrimarioOpaco) !important;
   color: #ffffff!important;
 }
 
@@ -667,7 +668,7 @@ table thead
 
 .background-popular
 {
-  background: linear-gradient(150deg, #50b848 0%, #4d9e46 100%);
+  background: linear-gradient(150deg, var(--colorPrimarioOpaco) 0%, var(--colorPrimario) 100%);
   transform: scale(1.05);
   z-index: 3;
 }
@@ -702,13 +703,13 @@ table thead
 .background-popular .btn-outline-dark:hover {
   background-color: #FFF!important;
   border: 1px solid #FFF!important;
-  color: #4d9e46;
+  color: var(--colorPrimario);
 }
 
 .background-popular .btn-audeed {
   background-color: #FFF !important;
   border: 1px solid #FFF !important;
-  color: #50b848!important;
+  color: var(--colorPrimarioOpaco)!important;
 }
 
 .sombra
@@ -734,4 +735,50 @@ table thead
     margin-left: 25px;
     margin-top: 0px;
     color: #7d7d7d;
+}
+
+.dev-bg-init
+{
+    object-fit: inherit;
+    width: 100%;
+    height: 100vh;
+    background: #ffffff;
+    position: fixed;
+}
+
+.dev-co-primary
+{
+  color: var(--colorPrimario)!important;
+}
+
+.btn-primary {
+    background-color: #f3a03f!important;
+    border: 1px solid #f3a03f!important;
+    border-radius: 25px!important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary, .btn-outline-primary.active, .btn-outline-primary:active, .show > .btn-outline-primary.dropdown-toggle, .btn-outline-primary:hover, .btn-primary.active, .btn-primary:active, .show > .btn-primary.dropdown-toggle {
+    background-color: #f2ab59 !important;
+    border: 1px solid #f2ab59 !important;
+}
+
+.badge-primary
+{
+  background-color: var(--colorPrimario)!important;
+}
+
+.btn-secondary 
+{
+    border-radius: 25px!important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] 
+{
+    background-color: var(--colorPrimario)!important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label:before 
+{
+    background-color: var(--colorPrimario);
+    border-color: var(--colorPrimario);
 }

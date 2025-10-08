@@ -2,7 +2,7 @@
 
 return [
     'welcome' => 'Bienvenido de nuevo!',
-    'session' => 'Inicia sesión para continuar a Audiid.',
+    'session' => 'RESULTADOS CONFIABLES, SOLUCIONES INTELIGENTES PARA LA INDUSTRIA DE ALIMENTOS',
     'username' => 'Correo electrónico',
     'inputusername' => 'Ingrese su correo electrónico',
     'password' => 'Contraseña',

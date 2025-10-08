@@ -31,7 +31,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="text-center m-0">
-                        <a href="index" class="logo logo-admin"><img src="{{ URL::asset('/vertical/assets/images/only_name_audiid.png') }}" height="30" alt="logo"></a>
+                        <a href="index" class="logo logo-admin"><img src="{{ URL::asset('/vertical/assets/images/logo_new_2023.png') }}" height="30" alt="logo"></a>
                     </h3>
 
                     <div class="p-3">
@@ -119,7 +119,7 @@
 
             <div class="m-t-40 text-center">
                 <p class="text-white">{{ trans('registermessages.already') }} <a href="{{route('Login_Ruta')}}" class="font-500 font-14 text-white font-secondary"> {{ trans('registermessages.login') }} </a> </p>
-                <p class="text-white">© {{date('Y')}} Audiid <i class="mdi mdi-heart" style="color:#26ae9c"></i></p>
+                <p class="text-white">© {{date('Y')}} Apptiva <i class="mdi mdi-heart" style="color:#F3A03F"></i></p>
             </div>
 
         
