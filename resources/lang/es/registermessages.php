@@ -10,7 +10,7 @@ return [
     'password' => 'Contraseña',
     'inputpassword' => 'Ingrese su contraseña',
     'registerbutton' => 'Registrarse',
-    'terms' => 'Al registrarse estás de acuerdo con Audiid',
+    'terms' => 'Al registrarse estás de acuerdo con Apptiva',
     'termsuse' => 'Terminos de uso',
     'already' => '¿Ya tienes una cuenta?',
     'login' => 'Inicia sesión',

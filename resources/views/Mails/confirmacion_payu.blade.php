@@ -36,26 +36,26 @@
                                                     </tr>
                                                     {{-- <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="text-align: center;font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0;" valign="top">
-                                                            <a href="{{route('Recovery_Password_Change',['idPassword' => encrypt($usuario->id)])}}" class="btn-primary" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #26ae9c; margin: 15px; border-color: #26ae9c; border-style: solid; border-width: 8px 16px;">
+                                                            <a href="{{route('Recovery_Password_Change',['idPassword' => encrypt($usuario->id)])}}" class="btn-primary" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #F3A03F; margin: 15px; border-color: #F3A03F; border-style: solid; border-width: 8px 16px;">
                                                                 Cambiar contraseña
                                                             </a>
                                                         </td>
                                                     </tr> --}}
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                            Gracias por contar con <b style="color:#26ae9c">Audiid</b>.
+                                                            Gracias por contar con <b style="color:#F3A03F">Audiid</b>.
                                                         </td>
                                                     </tr>
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                            <b style="color:#26ae9c">Audiid</b>
+                                                            <b style="color:#F3A03F">Audiid</b>
                                                             <p>Equipo de soporte</p>
                                                         </td>
                                                     </tr>
 
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="text-align: center;font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0;" valign="top">
-                                                            <p>© {{ date("Y",strtotime("-1 year")) }} - {{date('Y') }} Audiid <i class="mdi mdi-heart" style="color:#26ae9c"></i></p>
+                                                            <p>© {{ date("Y",strtotime("-1 year")) }} - {{date('Y') }} Audiid <i class="mdi mdi-heart" style="color:#F3A03F"></i></p>
                                                         </td>
                                                     </tr>
                                                 </table>

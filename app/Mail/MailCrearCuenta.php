@@ -31,8 +31,8 @@ class MailCrearCuenta extends Mailable
      */
     public function build()
     {
-        $address = 'audiid@audiid.co';
-        $name = "Audiid";
+        $address = 'soporte@apptiva.com';
+        $name = "Apptiva";
         return $this
         ->from($address, $name)
         ->subject('Creación de cuenta')

@@ -91,13 +91,11 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Audiid</title>
+        <title>Apptiva</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta content="Admin Dashboard" name="description" />
         <meta content="Themesbrand" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        {{-- main_general css --}}
-        <link href="{{ assets_version('/vertical/assets/css/main_general/main_general.css') }}" rel="stylesheet" type="text/css" />
         <!-- C3 charts css -->
         <link href="{{ assets_version('/vertical/assets/plugins/c3/c3.min.css') }}" rel="stylesheet" type="text/css" />
         <!--Morris Chart CSS -->
@@ -124,6 +122,8 @@
             let emailCuentaPrincipal = {!! json_encode($email) !!};
         </script>
         @include('layouts.vertical.head')
+        {{-- main_general css --}}
+        <link href="{{ assets_version('/vertical/assets/css/main_general/main_general.css') }}" rel="stylesheet" type="text/css" />
         {{-- TOAST --}}
         <link href="{{ assets_version('/vertical/assets/plugins/toastr/css/toastr.css') }}" rel="stylesheet" />
         <script>

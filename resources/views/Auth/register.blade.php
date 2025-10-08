@@ -17,13 +17,15 @@
 @endphp
 @section('content')
     <!-- Begin page -->
-        <div class="accountbg"></div>
+        <div class="accountbg">
+            <img class="dev-bg-init" src="{{URL::asset('horizontal/assets/images/fondologin.jpg')}}" alt="">
+        </div>
         <div class="wrapper-page">
 
             <div class="card">
                 <div class="card-body">
                     <h3 class="text-center m-0">
-                        <a href="index" class="logo logo-admin"><img src="{{ URL::asset('/vertical/assets/images/only_name_audiid.png') }}" height="30" alt="logo"></a>
+                        <a href="index" class="logo logo-admin"><img src="{{ URL::asset('/vertical/assets/images/logo_new_2023.png') }}" height="66 " alt="logo"></a>
                     </h3>
 
                     <div class="p-3">
@@ -108,8 +110,8 @@
             </div>
 
             <div class="m-t-40 text-center">
-                <p class="text-white">{{ trans('registermessages.already') }} <a href="{{route('Login_Ruta')}}" class="font-500 font-14 text-white font-secondary"> {{ trans('registermessages.login') }} </a> </p>
-                <p class="text-white">© {{date('Y')}} Audiid <i class="mdi mdi-heart" style="color:#26ae9c"></i></p>
+                <p class="text-black">{{ trans('registermessages.already') }} <a href="{{route('Login_Ruta')}}" class="font-500 font-14 dev-co-primary font-secondary"> {{ trans('registermessages.login') }} </a> </p>
+                <p class="text-black">© {{date('Y')}} Apptiva <i class="mdi mdi-heart" style="color:#F3A03F"></i></p>
             </div>
 
 

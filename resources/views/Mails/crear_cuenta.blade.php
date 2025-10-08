@@ -26,7 +26,7 @@
                                                 <table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                            <h3 style="color:#26ae9c">Bienvenido a Audiid</h3>                                                            
+                                                            <h3 style="color:#F3A03F">Bienvenido a Apptiva</h3>                                                            
                                                         </td>
                                                     </tr>
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -36,25 +36,25 @@
                                                     </tr>
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                            <p><b>Ingrese a su cuenta en:</b> <a style="color:#26ae9c" href="{{ Request::root() }}"></a>{{ Request::root() }}</p>
-                                                            <b>Email: </b> <a style="color:#26ae9c!important">{{ $usuario->correo }}</a>
+                                                            <p><b>Ingrese a su cuenta en:</b> <a style="color:#F3A03F" href="{{ Request::root() }}"></a>{{ Request::root() }}</p>
+                                                            <b>Email: </b> <a style="color:#F3A03F!important">{{ $usuario->correo }}</a>
                                                         </td>
                                                     </tr>
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                            ¿Necesitas ayuda? Contácta nuestra área de atención en <a href="https://www.audeed.app/" style="color:#26ae9c">equipo de soporte</a>
+                                                            ¿Necesitas ayuda? Contácta nuestra área de atención en <a href="{{ Request::root() }}" style="color:#F3A03F">equipo de soporte</a>
                                                         </td>
                                                     </tr>
                                                     
                                                     <tr style="text-align:center; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                            <b>Audiid</b>
+                                                            <b>Apptiva</b>
                                                         </td>
                                                     </tr>
 
                                                     <tr style=" text-align:center; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0;" valign="top">
-                                                            <p>© {{ date("Y",strtotime("-1 year")) }} - {{date('Y') }} Audiid <i class="mdi mdi-heart" style="color:#26ae9c"></i></p>
+                                                            <p>© {{date('Y') }} Apptiva <i class="mdi mdi-heart" style="color:#F3A03F"></i></p>
                                                         </td>
                                                     </tr>
                                                 </table>

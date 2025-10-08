@@ -5,7 +5,9 @@
 @endsection
 @section('content')
  <!-- Begin page -->
-        <div class="accountbg"></div>
+        <div class="accountbg">
+            <img class="dev-bg-init" src="{{URL::asset('horizontal/assets/images/fondologin.jpg')}}" alt="">
+        </div>
         <div class="wrapper-page">
             <div class="card">
                 <div class="card-body">
@@ -14,7 +16,7 @@
                     </h3>
 
                     <div class="p-3">
-                        <p class="text-muted text-center">{{ trans('loginmessages.session') }}</p>
+                        <p class="text-center dev-co-primary">{{ trans('loginmessages.session') }}</p>
 
                         <form class="form-horizontal m-t-30" id="formularioLogin">
 
@@ -59,7 +61,7 @@
 
             <div class="m-t-40 text-center">
                 {{-- <p class="text-white">{{ trans('loginmessages.noaccount') }} <a href="{{route('Register_Ruta')}}" class="font-500 font-14 text-white font-secondary"> {{ trans('loginmessages.register') }} </a> </p> --}}
-                <p class="text-white">© {{date('Y')}} Audiid <i class="mdi mdi-heart" style="color:#26ae9c"></i></p>
+                <p class="text-black">© {{date('Y')}} Apptiva <i class="mdi mdi-heart" style="color:#F3A03F"></i></p>
             </div>
 
         </div>

@@ -26,7 +26,7 @@
                                                 <table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                            <h3 style="color:#26ae9c">Gestiona el plan de acción</h3>                                                            
+                                                            <h3 style="color:#F3A03F">Gestiona el plan de acción</h3>                                                            
                                                         </td>
                                                     </tr>
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -42,7 +42,7 @@
 
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="text-align: center;font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0;" valign="top">
-                                                            <a href="{{route('plan_accion_hallazgos')}}" class="btn-primary" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #26ae9c; margin: 15px; border-color: #26ae9c; border-style: solid; border-width: 8px 16px;">
+                                                            <a href="{{route('plan_accion_hallazgos')}}" class="btn-primary" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #F3A03F; margin: 15px; border-color: #F3A03F; border-style: solid; border-width: 8px 16px;">
                                                                 Ver hallazgo
                                                             </a>
                                                         </td>
@@ -62,7 +62,7 @@
 
                                                     <tr style=" text-align:center; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0;" valign="top">
-                                                            <p>© {{ date("Y",strtotime("-1 year")) }} - {{date('Y') }} Audiid <i class="mdi mdi-heart" style="color:#26ae9c"></i></p>
+                                                            <p>© {{ date("Y",strtotime("-1 year")) }} - {{date('Y') }} Audiid <i class="mdi mdi-heart" style="color:#F3A03F"></i></p>
                                                         </td>
                                                     </tr>
                                                 </table>
