@@ -96,7 +96,7 @@
             <div class="col-xl-9">
                 <div class="card m-b-20">
                     <div class="card-body" style="min-height: 350px;">
-                        <h4 class="mt-0 m-b-30 header-title">PROMEDIO DE RESULTADO FINAL</h4>
+                        <h4 class="mt-0 m-b-30 header-title">PROMEDIO GENERAL</h4>
                         <div class="card-block contenedorGraficaResultadoFinal">
                             <canvas id="canvasPromedioResultadoFinal" width="200" height="200"></canvas>
                         </div>
@@ -123,7 +123,7 @@
             <div class="col-xl-9">
                 <div class="card m-b-20">
                     <div class="card-body" style="min-height: 350px;">
-                        <h4 class="mt-0 m-b-30 header-title">PROMEDIO DE RESULTADO POR CATEGORÍA</h4>
+                        <h4 class="mt-0 m-b-30 header-title">PROMEDIO POR CATEGORÍA</h4>
                         <div class="card-block contenedorGraficaCategorias">
                             <canvas id="canvasPromedioCategoria" width="200" height="200"></canvas>
                         </div>
@@ -134,6 +134,7 @@
             <div class="col-xl-3">
                 <div class="card m-b-20">
                     <div class="card-body" style="min-height: 350px;">
+                        <h4 class="mt-0 m-b-30 header-title">PROMEDIO POR CATEGORÍA:</h4>
                         <h4 class="mt-0 m-b-30 header-title">EMPRESAS: <span class="subtituloEmpresas">Todas</span> <span class="nombreEmpresa"></span> </h4>
                         <div class="card-block" style="overflow: auto;height: 250px;">
                             <ul class="listaInforme"> 
@@ -153,7 +154,7 @@
             <div class="col-xl-12">
                 <div class="card m-b-20">
                     <div class="card-body">
-                        <h4 class="mt-0 m-b-30 header-title">REINCIDENCIAS DE INCUMPLIMIENTO</h4>
+                        <h4 class="mt-0 m-b-30 header-title">INCUMPLIMIENTO REINCIDENTES POR PREGUNTA:</h4>
                         <div class="card-block">
                             <div class="table-responsive">
                                 <table id="table" class="table tablaReincidencias">
