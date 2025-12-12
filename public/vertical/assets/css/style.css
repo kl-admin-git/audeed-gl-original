@@ -61,6 +61,13 @@ a:focus {
   text-decoration: none;
 }
 
+.wizard>.content>.body {
+  width: 100%;
+  height: 100%;
+  padding: 15px 0 0;
+  position: static;
+}
+
 code {
   background-color: #f7f7f9;
   padding: .2rem .4rem;
