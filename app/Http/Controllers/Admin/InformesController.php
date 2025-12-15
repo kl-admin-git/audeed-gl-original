@@ -14,6 +14,7 @@ use App\Exports\EvaluacionExports;
 use App\Exports\DotacionPracticasExports;
 use App\Exports\VerificacionBalanzasExports;
 use App\Exports\TemperaturaFriosExports;
+use App\Exports\PlanillaTitulacionExports;
 use Carbon\Carbon;
 
 class InformesController extends Controller
@@ -1648,5 +1649,208 @@ class InformesController extends Controller
         $clearArray = $this->FunctionGetDataTemperaturaFrios($arrayFiltros, $idCheckList);
 
         return \Excel::download(new TemperaturaFriosExports($clearArray), 'temperatura_frios.xlsx');
+    }
+
+
+    public function IndexPlanillaTitulacion()
+    {
+        $datosPlanilla = $this->SimularDatosPlanillaTitulacion();
+        
+        return view('admin.informe_planilla_titulacion', compact('datosPlanilla'));
+    }
+
+    public function GetDataInitPlanillaTitulacion(Request $request)
+    {
+        $pagination = $request->get('paginacion', 1); 
+        $arrayFiltros = json_decode($request->get('arrayFiltros')); 
+
+        $datosPlanilla = $this->SimularDatosPlanillaTitulacion($pagination, $arrayFiltros);
+        
+        return response()->json([
+            'success' => 1,
+            'responseCode' => 202,
+            'message' => "Data found.",
+            'totalPaginas' => $datosPlanilla['totalPaginas'],
+            'totalRegistros' => $datosPlanilla['totalRegistros'],
+            'data' => $datosPlanilla // Agregamos los datos reales para la tabla
+        ]);
+    }
+
+
+    private function SimularDatosPlanillaTitulacion($paginacion = null, $filtros = null)
+    {
+        $data_auditoria = \DB::table('lista_chequeo')
+        ->where('id', '=', 149)
+        ->first();
+
+        // Configuración de paginación
+        $registrosPorPagina = 10;
+        $paginaActual = $paginacion ?? 1;
+        $offset = ($paginaActual - 1) * $registrosPorPagina;
+
+        // Primero, obtener el total de registros únicos (listas ejecutadas)
+        $totalRegistrosQuery = \DB::select(\DB::raw("
+            SELECT COUNT(DISTINCT lce.id) as total
+            FROM lista_chequeo_ejecutadas lce 
+            INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
+            WHERE lc.id = 149
+        "));
+        
+        $totalRegistros = $totalRegistrosQuery[0]->total ?? 0;
+        $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
+
+        // Obtener los IDs de las listas ejecutadas para esta página
+        $listaEjectIdsQuery = \DB::select(\DB::raw("
+            SELECT DISTINCT lce.id
+            FROM lista_chequeo_ejecutadas lce 
+            INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
+            WHERE lc.id = 149
+            ORDER BY lce.id ASC
+            LIMIT {$registrosPorPagina} OFFSET {$offset}
+        "));
+
+        $listaEjectIds = array_map(function($item) {
+            return $item->id;
+        }, $listaEjectIdsQuery);
+
+        // Si no hay IDs, retornar estructura vacía
+        if (empty($listaEjectIds)) {
+            return [
+                'lista_chequeo' => [
+                    'id' => $data_auditoria->id,
+                    'nombre' => $data_auditoria->nombre,
+                    'color' => '#4472C4'
+                ],
+                'categorias' => [],
+                'registros' => [],
+                'totalPaginas' => $totalPaginas > 0 ? $totalPaginas : 1,
+                'totalRegistros' => $totalRegistros
+            ];
+        }
+
+        // Convertir array de IDs a string para la consulta
+        $idsString = implode(',', $listaEjectIds);
+
+        // Ahora obtener todos los datos de esas listas ejecutadas
+        $datosQuery = \DB::select(\DB::raw("
+            SELECT
+                DATE_FORMAT(lce.finished_at,'%d/%m/%Y') AS FECHA,
+                DATE_FORMAT(lce.finished_at,'%H:%i') AS HORA,
+                p.id AS PREGUNTA_ID,
+                p.nombre AS PREGUNTA,
+                u.nombre_completo AS FIRMA_OPERARIO,
+                'NUEVO CAMPO' AS FIRMA_LIDER,
+                lce.id AS LISTA_EJECT_ID,
+                cat.id AS CATEGORIA_ID,
+                cat.nombre AS CATEGORIA_NOMBRE,
+                cet.id AS ETIQUETA_ID,
+                cet.nombre AS ETIQUETA_NOMBRE,
+                lcer.respuesta_abierta AS RESPUESTA
+            FROM lista_chequeo_ejecutadas lce 
+            INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
+            INNER JOIN lista_chequeo_ejec_respuestas lcer ON lce.id = lcer.lista_chequeo_ejec_id
+            INNER JOIN pregunta p ON lcer.pregunta_id = p.id
+            INNER JOIN categoria cat ON p.categoria_id = cat.id
+            INNER JOIN categoria_etiquetas cet ON cat.id_etiqueta = cet.id
+            INNER JOIN usuario u ON lce.usuario_id = u.id
+            WHERE lc.id = 149 AND lce.id IN ({$idsString})
+            ORDER BY lce.id ASC, p.id ASC
+        "));
+
+        $registrosAgrupados = [];
+        $preguntasUnicas = [];
+        
+        foreach ($datosQuery as $row) {
+            $listaEjectId = $row->LISTA_EJECT_ID;
+            
+            if (!isset($registrosAgrupados[$listaEjectId])) {
+                $registrosAgrupados[$listaEjectId] = [
+                    'fecha' => $row->FECHA,
+                    'hora' => $row->HORA,
+                    'firma_operario' => $row->FIRMA_OPERARIO,
+                    'firma_lider' => $row->FIRMA_LIDER,
+                    'respuestas' => []
+                ];
+            }
+            
+            $registrosAgrupados[$listaEjectId]['respuestas'][$row->PREGUNTA_ID] = $row->RESPUESTA ?? '';
+            
+            if (!isset($preguntasUnicas[$row->PREGUNTA_ID])) {
+                $preguntasUnicas[$row->PREGUNTA_ID] = [
+                    'id' => $row->PREGUNTA_ID,
+                    'nombre' => $row->PREGUNTA,
+                    'categoria_id' => $row->CATEGORIA_ID,
+                    'categoria_nombre' => $row->CATEGORIA_NOMBRE,
+                    'etiqueta_id' => $row->ETIQUETA_ID,
+                    'etiqueta_nombre' => $row->ETIQUETA_NOMBRE
+                ];
+            }
+        }
+
+        $categorias = [];
+        $categoriasMap = [];
+        
+        foreach ($preguntasUnicas as $pregunta) {
+            $catId = $pregunta['categoria_id'];
+            $etiqId = $pregunta['etiqueta_id'];
+            
+            if (!isset($categoriasMap[$catId])) {
+                $categoriasMap[$catId] = [
+                    'id' => $catId,
+                    'nombre' => $pregunta['categoria_nombre'],
+                    'color' => '#FFC000',
+                    'colspan' => 0,
+                    'etiquetas' => []
+                ];
+            }
+            
+            if (!isset($categoriasMap[$catId]['etiquetas'][$etiqId])) {
+                $categoriasMap[$catId]['etiquetas'][$etiqId] = [
+                    'id' => $etiqId,
+                    'nombre' => $pregunta['etiqueta_nombre'],
+                    'color' => '#888681',
+                    'colspan' => 0,
+                    'info_adicional' => '',
+                    'preguntas' => []
+                ];
+            }
+            
+            $categoriasMap[$catId]['etiquetas'][$etiqId]['preguntas'][] = [
+                'id' => $pregunta['id'],
+                'nombre' => $pregunta['nombre'],
+                'color' => '#fc9425'
+            ];
+            
+            $categoriasMap[$catId]['etiquetas'][$etiqId]['colspan']++;
+            $categoriasMap[$catId]['colspan']++;
+        }
+        
+        foreach ($categoriasMap as $cat) {
+            $cat['etiquetas'] = array_values($cat['etiquetas']);
+            $categorias[] = $cat;
+        }
+
+        $registros = array_values($registrosAgrupados);
+
+        return [
+            'lista_chequeo' => [
+                'id' => $data_auditoria->id,
+                'nombre' => $data_auditoria->nombre,
+                'color' => '#4472C4'
+            ],
+            'categorias' => $categorias,
+            'registros' => $registros,
+            'totalPaginas' => $totalPaginas > 0 ? $totalPaginas : 1,
+            'totalRegistros' => $totalRegistros
+        ];
+    }
+
+    public function descargarExcelPlanillaTitulacion(Request $request)
+    {
+        setlocale(LC_ALL, 'es_ES.utf8');
+        
+        $data = $this->SimularDatosPlanillaTitulacion();
+        
+        return \Excel::download(new PlanillaTitulacionExports($data), 'planilla_titulacion.xlsx');
     }
 }

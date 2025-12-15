@@ -490,3 +490,13 @@ $('.restablecerBoton').on('click', OnClickRestablecerBusqueda);
 $('.buscarBoton').on('click', OnClickBuscarBoton);
 $('.empresaPopUp').on('change', OnChangeEmpresa);
 $('.establecimientoPopUp').on('change', OnChangeEstablecimiento);
+
+$('input[name="flexRadioDefault"]').on('change', function () {
+    if ($('#flexRadioDefault1').is(':checked')) {
+        $('#divEmpresa').show();
+        $('#divEstablecimiento').hide();
+    } else if ($('#flexRadioDefault2').is(':checked')) {
+        $('#divEstablecimiento').show();
+        $('#divEmpresa').hide();
+    }
+});

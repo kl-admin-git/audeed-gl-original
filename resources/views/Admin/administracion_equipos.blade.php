@@ -19,10 +19,10 @@
                                 <button type="button" class="btn btn-primary" data-toggle="collapse"
                                     data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
                                     id="buscar-tour">Buscar <i class="fa" aria-hidden="true"></i></button>
-                                    @if ($perfilExacto == 1 || $perfilExacto == 2)
-                                        <button type="button" class="btn btn-primary waves-effect waves-light"
-                                            id="button_to_create">Nuevo</button>
-                                    @endif
+                                @if ($perfilExacto == 1 || $perfilExacto == 2)
+                                    <button type="button" class="btn btn-primary waves-effect waves-light"
+                                        id="button_to_create">Nuevo</button>
+                                @endif
                             </div>
 
                             <div class="col-lg-12 m-t-10">
@@ -33,9 +33,11 @@
                                             <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <select class="form-control select2 selectSearch equiposSearch">
-                                                        <option value="null" disabled selected>Buscar por nombre del equipo</option>
+                                                        <option value="null" disabled selected>Buscar por nombre del
+                                                            equipo</option>
                                                         @foreach ($equiposFiltro as $equipo)
-                                                            <option value="{{ $equipo->id }}">{{ $equipo->nombre }}</option>
+                                                            <option value="{{ $equipo->id }}">{{ $equipo->nombre }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -88,7 +90,7 @@
                     </div>
                 </div>
 
-            </div> 
+            </div>
         </div> <!-- end row -->
 
         <div id="main_no_data" class="hidden">
@@ -136,31 +138,50 @@
                                                         placeholder="Ingrese la descripción del equipo" />
                                                 </div>
                                             </div>
-
-                                            <div class="col-lg-6">
+                                            <br>
+                                            <div class="col-lg-12 d-flex mb-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="flexRadioDefault1" checked>
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Empresa
+                                                    </label>
+                                                </div>
+                                                <div class="form-check ml-4">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="flexRadioDefault" id="flexRadioDefault2">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                        Establecimiento
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="col-lg-6" id="divEmpresa">
                                                 <div class="form-group">
                                                     <label>Empresa: </label>
                                                     <select class="form-control select2 selectSearch empresaPopUp">
                                                         <option value="">Selecciona una empresa</option>
                                                         @foreach ($empresas as $itemEmpresa)
-                                                            <option value="{{ $itemEmpresa->id }}">{{ $itemEmpresa->nombre }}</option>
-                                                         @endforeach
+                                                            <option value="{{ $itemEmpresa->id }}">
+                                                                {{ $itemEmpresa->nombre }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="col-lg-6">
+
+                                            <div style="display: none" class="col-lg-6" id="divEstablecimiento">
                                                 <div class="form-group">
                                                     <label>Establecimiento: </label>
                                                     <select class="form-control select2 selectSearch establecimientoPopUp">
                                                         <option value="">Selecciona un establecimiento</option>
                                                         @foreach ($establecimientos as $itemEstablecimiento)
-                                                            <option value="{{ $itemEstablecimiento->id }}">{{ $itemEstablecimiento->nombre }}</option>
-                                                         @endforeach
+                                                            <option value="{{ $itemEstablecimiento->id }}">
+                                                                {{ $itemEstablecimiento->nombre }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
 
                                         <div class="form-group m-b-0">
@@ -196,11 +217,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                       <ul class="detalle">
-                           {{-- CARGADO POS JS --}}
-                       </ul>
+                        <ul class="detalle">
+                            {{-- CARGADO POS JS --}}
+                        </ul>
                     </div>
-                   
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                     </div>
@@ -208,9 +229,9 @@
             </div>
         </div>
         {{-- FIN MODAL DE DETALLES --}}
-
     @endsection
 
     @section('script')
-        <script type="text/javascript" src="{{ assets_version('/vertical/assets/js/administracion/equipos/main.js') }}"></script>
+        <script type="text/javascript" src="{{ assets_version('/vertical/assets/js/administracion/equipos/main.js') }}">
+        </script>
     @endsection

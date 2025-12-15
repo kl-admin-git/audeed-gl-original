@@ -195,13 +195,13 @@
         <div class="col-xl-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                    <h4 class="mt-0 m-b-30 header-title">PORCENTAJE DE CALIFICACION POR CICLO</h4>
+                    <h4 class="mt-0 m-b-30 header-title">PORCENTAJE DE CALIFICACION POR ETIQUETA</h4>
                     <div class="card-block">
                         <div class="table-responsive">
                             <table id="table" class="table tablaPorcentaje">
                                 <thead class="table-inverse mb-0">
                                     <tr>
-                                        <th>Ciclo</th>
+                                        <th>Etiqueta</th>
                                         <th>Resultado</th>
                                         <th>% de calificación</th>
                                     </tr>

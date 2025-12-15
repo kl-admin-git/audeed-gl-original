@@ -292,7 +292,10 @@ Route::post('/informes/equipos_frios/DownloadExcel', ['as' => 'download_excel_te
 Route::get('/informes/cumplimientoLista', ['as' => 'index_cumplimiento_lista', 'uses' => 'Admin\InformesController@indexCumplimientoLista']);
 Route::post('/informes/cumplimientoLista/consultaPromedioFinal', ['as' => 'consulta_promedio_final_cumplimiento_lista', 'uses' => 'Admin\InformesController@consultaPromedioFinal']);
 
-
+//INFORME ESPECIAL
+Route::get('/informes/planilla_titulacion', ['as' => 'planilla_titulacion', 'uses' => 'Admin\InformesController@IndexPlanillaTitulacion']);
+Route::post('/listachequeo/informe_planilla_titulacion/GetDataInit', ['as' => 'get_data_init_planilla_titulacion', 'uses' => 'Admin\InformesController@GetDataInitPlanillaTitulacion']);
+Route::post('/listachequeo/informe_planilla_titulacion/descargar-excel', ['as' => 'descargar_excel_planilla_titulacion', 'uses' => 'Admin\InformesController@descargarExcelPlanillaTitulacion']);
 
 
 

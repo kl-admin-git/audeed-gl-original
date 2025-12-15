@@ -50,11 +50,46 @@ if ("geolocation" in navigator) {
 }
 
 $(document).ready(function () {
+    for (let i = 1; i <= 10; i++) {
+        $('#respuestaSelectNumerico').append(`<option value="${i}">${i}</option>`);
+    }
+
+    /*
+    referencias.forEach(element => {
+        $('#respuestaSelectReferencias').append(`<option value="${element}">${element}</option>`);
+    });
+
+    productos.forEach(element => {
+        $('#respuestaSelectProductos').append(`<option value="${element}">${element}</option>`);
+    });
+    */
+
+    equipos_max.forEach(element => {
+        $('#respuestaSelectEquipos').append(`<option value="${element}">${element}</option>`);
+    });
+
+    /*
+     lotes.forEach(element => {
+         $('#respuestaSelectLotes').append(`<option value="${element}">${element}</option>`);
+     });
+ 
+    */
+
+
+    areas.forEach(element => {
+        $('#respuestaSelectAreas').append(`<option value="${element.nombre}">${element.nombre}</option>`);
+    });
+
     // Date Picker
     $('#datepicker-autoclose').datepicker({
         autoclose: true,
         format: 'dd/mm/yyyy',
         language: 'es'
+    });
+
+    $(".select2").select2({
+        dropdownParent: $('#popUpRespuestaFecha'),
+        minimumResultsForSearch: 0
     });
 
     //Cargar archivos adjuntos
@@ -185,28 +220,27 @@ function IniciarVista() {
     });
 }
 
-function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta, ponderado, opcLlenas, opcLlenasFotos, opcLlenasAdjuntos, planAccion, opcionesGeneralesLlenasPlanAccionM,tipoRespuestaBk) {
+function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta, ponderado, opcLlenas, opcLlenasFotos, opcLlenasAdjuntos, planAccion, opcionesGeneralesLlenasPlanAccionM, tipoRespuestaBk) {
     let string = '';
-
+    console.log(respuestas)
     let stringRespuestas = '';
     let tipoRespuesta = 0;
     if (respuestas.length != 0)
         tipoRespuesta = respuestas[0].TIPO_RESPUESTA;
 
-    console.log(respuestas);
-    $.each(respuestas, function (indexInArray, item) 
-    {
-        switch (tipoRespuestaBk) 
-        {
+
+    $.each(respuestas, function (indexInArray, item) {
+        console.log(tipoRespuestaBk);
+        switch (tipoRespuestaBk) {
             case 3: //RESPUESTA ABIERTA
-                if(item.id == 0) //N/A
+                if (item.id == 0) //N/A
                 {
                     let stringClase = '';
                     if (item.id == item.rta)
                         stringClase = 'respuestaSeleccion';
                     else
                         stringClase = '';
-            
+
                     stringRespuestas += `<div class="m-l-5 m-r-5">
                                             <div class="form-group">
                                                 <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
@@ -215,14 +249,13 @@ function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta,
                                             </div>
                                         </div>`;
                 }
-                else
-                {
+                else {
                     let stringClase = '';
                     if (item.id == item.rta)
                         stringClase = 'respuestaSeleccion';
                     else
                         stringClase = '';
-            
+
                     stringRespuestas += `<div class="m-l-5 m-r-5">
                                             <div class="form-group">
                                                 <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
@@ -234,14 +267,14 @@ function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta,
                 break;
 
             case 5: //RESPUESTA NÚMERICA
-                if(item.id == 0) //N/A
+                if (item.id == 0) //N/A
                 {
                     let stringClase = '';
                     if (item.id == item.rta)
                         stringClase = 'respuestaSeleccion';
                     else
                         stringClase = '';
-            
+
                     stringRespuestas += `<div class="m-l-5 m-r-5">
                                             <div class="form-group">
                                                 <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
@@ -250,14 +283,13 @@ function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta,
                                             </div>
                                         </div>`;
                 }
-                else
-                {
+                else {
                     let stringClase = '';
                     if (item.id == item.rta)
                         stringClase = 'respuestaSeleccion';
                     else
                         stringClase = '';
-            
+
                     stringRespuestas += `<div class="m-l-5 m-r-5">
                                             <div class="form-group">
                                                 <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
@@ -267,14 +299,342 @@ function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta,
                                         </div>`;
                 }
                 break;
-        
+
+            case 6: //RESPUESTA IEMPO
+                if (item.id == 0) //N/A
+                {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                else {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   Agregar tiempo
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                break;
+
+            case 7: //RESPUESTA FECHA
+                if (item.id == 0) //N/A
+                {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                else {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   Agregar Fecha
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                break;
+
+            case 8: //RESPUESTA SELECTOR NÚMERICO
+                if (item.id == 0) //N/A
+                {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                else {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   Seleccionar
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                break;
+
+            case 9: //RESPUESTA SELECTOR REFERNCIAS
+                if (item.id == 0) //N/A
+                {
+
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                else {
+                    console.log("rta", item.rta)
+                    console.log("id", item.id)
+                    console.log("resultado", item.id == item.rta)
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    /*stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   Seleccionar
+                                                </div>
+                                            </div>
+                                        </div>`; */
+
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" idRespuesta="${item.id}">
+                                                   ${item.rta_abierta == null ? 'Sin respuesta' : item.rta_abierta}
+                                                </div>
+                                            </div>
+                                        </div>`
+                }
+                break;
+
+            case 10: //RESPUESTA SELECTOR PRODUCTOS
+                if (item.id == 0) //N/A
+                {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                else {
+
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    /*stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   Seleccionar
+                                                </div>
+                                            </div>
+                                        </div>`; */
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" idRespuesta="${item.id}">
+                                                   ${item.rta_abierta == null ? 'Sin respuesta' : item.rta_abierta}
+                                                </div>
+                                            </div>
+                                        </div>`
+                }
+                break;
+
+            case 11: //RESPUESTA SELECTOR EQUIPOS
+                if (item.id == 0) //N/A
+                {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                else {
+
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   Seleccionar
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                break;
+
+            case 13: //RESPUESTA SELECTOR LOTE
+                if (item.id == 0) //N/A
+                {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                else {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   ${item.rta_abierta == null ? 'Sin respuesta' : item.rta_abierta}
+                                                </div>
+                                            </div>
+                                        </div>`;
+
+
+                }
+                break;
+            case 14: //RESPUESTA SELECTOR AREA
+                if (item.id == 0) //N/A
+                {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                else {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   Seleccionar
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                break;
+            case 15: //RESPUESTA SELECTOR MOTIVO
+                if (item.id == 0) //N/A
+                {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="0" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                    ${item.valor_personalizado}
+                                                </div>
+                                            </div>
+                                        </div>`;
+                } else {
+                    let stringClase = '';
+                    if (item.id == item.rta)
+                        stringClase = stringClase = 'respuestaSeleccion';
+                    else
+                        stringClase = '';
+
+                    stringRespuestas += `<div class="m-l-5 m-r-5">
+                                            <div class="form-group">
+                                                <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
+                                                   Seleccionar
+                                                </div>
+                                            </div>
+                                        </div>`;
+                }
+                break;
+
             default:
                 let stringClase = '';
                 if (item.id == item.rta)
                     stringClase = 'respuestaSeleccion';
                 else
                     stringClase = '';
-        
+
                 stringRespuestas += `<div class="m-l-5 m-r-5">
                                         <div class="form-group">
                                             <div class="respuesta bg-gray ${stringClase}" tipoRespuesta="${tipoRespuestaBk}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
@@ -284,7 +644,7 @@ function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta,
                                     </div>`;
                 break;
         }
-        
+
     });
 
     let stringRespuestasOpciones = '';
@@ -318,7 +678,7 @@ function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta,
             }
 
         }
-        
+
 
         stringRespuestasOpciones += `<div class="m-l-10">
                                             <div class="form-group">
@@ -330,7 +690,7 @@ function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta,
     });
 
     //VALIDO SI HAY PLAN DE ACCION Y AGREGO EL BOTON A LA PREGUNTA
-    if(planAccion.length > 0){
+    if (planAccion.length > 0) {
         //VALIDO SI YA LLENO EL PLAN DE ACCION MANUAL Y ASIGNO LA CLASE PARA DEJAR EL BOTON CHEQUEADO
         let claseSeleccionada = '';
         if (opcionesGeneralesLlenasPlanAccionM) {
@@ -416,7 +776,7 @@ function OnClickCategoria(control) {
 var objetoEnviarGlobal = null;
 var controlGlobal = null;
 function OnClickRespuesta(control) {
-    if($(control).hasClass('respuestaSeleccion') && ($(control).attr('tipoRespuesta') != 3 && $(control).attr('tipoRespuesta') != 5))
+    if ($(control).hasClass('respuestaSeleccion') && ($(control).attr('tipoRespuesta') != 3 && $(control).attr('tipoRespuesta') != 5 && $(control).attr('tipoRespuesta') != 6 && $(control).attr('tipoRespuesta') != 7 && $(control).attr('tipoRespuesta') != 8 && $(control).attr('tipoRespuesta') != 9 && $(control).attr('tipoRespuesta') != 10  && $(control).attr('tipoRespuesta') != 11 && $(control).attr('tipoRespuesta') != 13 && $(control).attr('tipoRespuesta') != 14 && $(control).attr('tipoRespuesta') != 15))
         return;
 
     let contenedorPregunta = $(control).parents().eq(4);
@@ -443,32 +803,268 @@ function OnClickRespuesta(control) {
         respuestaAbierta: ''
     };
 
-    if(tipoRespuesta == 3) //RESPUESTA ABIERTA
+    $('#respuestaFechaText').show();
+    $('#respuestaSelectReferencias').next('.select2-container').hide();
+    $('#respuestaSelectProductos').next('.select2-container').hide();
+    $('#respuestaSelectEquipos').next('.select2-container').hide();
+    $('#respuestaSelectNumerico').next('.select2-container').hide();
+    $('#respuestaSelectLotes').next('.select2-container').hide();
+    $('#respuestaSelectAreas').next('.select2-container').hide();
+    $('#respuestaSelectMotivos').next('.select2-container').hide();
+
+    $('#popUpRespuestaFecha .modal-title').text('Guardar respuesta');
+    $('#popUpRespuestaFecha .cancelarPopUpRespuestaFecha').text('Cancelar');
+
+    if (tipoRespuesta == 3) //RESPUESTA ABIERTA
     {
         objetoEnviarGlobal = objetoEnviar;
         controlGlobal = control;
 
-        if(respuestaAbierta != 'null')
+        if (respuestaAbierta != 'null')
             $('#respuestaAbiertaText').val(respuestaAbierta);
         else
             $('#respuestaAbiertaText').val('');
 
+        if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
+            $('.guardarRespuesta').hide();
+        } else {
+            $('.guardarRespuesta').show();
+        }
+
         $('#popUpRespuestaAbierta').modal('show');
     }
-    else if(tipoRespuesta == 5) //RESPUESTA NÚMERICA
+    else if (tipoRespuesta == 5) //RESPUESTA NÚMERICA
     {
         objetoEnviarGlobal = objetoEnviar;
         controlGlobal = control;
 
-        if(respuestaAbierta != 'null')
+        if (respuestaAbierta != 'null')
             $('#respuestaNumericaText').val(respuestaAbierta);
         else
             $('#respuestaNumericaText').val('');
 
+        if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
+            $('.guardarRespuestaNumerica').hide();
+        } else {
+            $('.guardarRespuestaNumerica').show();
+        }
+
         $('#popUpRespuestaNumerica').modal('show');
     }
-    else
+    else if (tipoRespuesta == 6) //RESPUESTA TIEMPO
     {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        if (respuestaAbierta != 'null')
+            $('#respuestaTiempoText').val(respuestaAbierta);
+        else
+            $('#respuestaTiempoText').val('');
+
+        if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
+            $('.guardarRespuestaTiempo').hide();
+        } else {
+            $('.guardarRespuestaTiempo').show();
+        }
+
+        $('#popUpRespuestaTiempo').modal('show');
+    }
+    else if (tipoRespuesta == 8) //RESPUESTA SELECTOR NUMERICO
+    {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        $('#respuestaFechaText').hide();
+        $('#respuestaSelectReferencias').next('.select2-container').hide();
+        $('#respuestaSelectProductos').next('.select2-container').hide();
+        $('#respuestaSelectEquipos').next('.select2-container').hide();
+        $('#respuestaSelectNumerico').next('.select2-container').show();
+        $('#respuestaSelectLotes').next('.select2-container').hide();
+        $('#respuestaSelectAreas').next('.select2-container').hide();
+        $('#respuestaSelectMotivos').next('.select2-container').hide();
+
+        $('#respuestaSelectNumerico').val(respuestaAbierta).trigger('change');
+
+
+        if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
+            $('.guardarRespuestaFecha').hide();
+        } else {
+            $('.guardarRespuestaFecha').show();
+        }
+
+        $('#popUpRespuestaFecha').modal('show');
+    } else if (tipoRespuesta == 9) //RESPUESTA SELECTOR REFERENCIAS
+    {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        $('#respuestaFechaText').hide();
+        $('#respuestaSelectNumerico').next('.select2-container').hide();
+        $('#respuestaSelectProductos').next('.select2-container').hide();
+        $('#respuestaSelectEquipos').next('.select2-container').hide();
+        $('#respuestaSelectReferencias').next('.select2-container').show();
+        $('#respuestaSelectLotes').next('.select2-container').hide();
+        $('#respuestaSelectAreas').next('.select2-container').hide();
+        $('#respuestaSelectMotivos').next('.select2-container').hide();
+        const texto = respuestaAbierta.split('-')[0].trim();
+        let resultado = referencias.find(ref => ref.split('-')[0].trim() === texto)
+        $('#respuestaSelectReferencias').val(resultado).prop('disabled', true).trigger('change');
+        $('#popUpRespuestaFecha .modal-title').text('Ver respuesta');
+        $('#popUpRespuestaFecha .cancelarPopUpRespuestaFecha').text('Cerrar');
+
+        $('.guardarRespuestaFecha').hide();
+
+
+        $('#popUpRespuestaFecha').modal('show');
+    } else if (tipoRespuesta == 10) //RESPUESTA SELECTOR PRODUCTOS
+    {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        $('#respuestaFechaText').hide();
+        $('#respuestaSelectNumerico').next('.select2-container').hide();
+        $('#respuestaSelectReferencias').next('.select2-container').hide();
+        $('#respuestaSelectEquipos').next('.select2-container').hide();
+        $('#respuestaSelectProductos').next('.select2-container').show();
+        $('#respuestaSelectLotes').next('.select2-container').hide();
+        $('#respuestaSelectAreas').next('.select2-container').hide();
+        $('#respuestaSelectMotivos').next('.select2-container').hide();
+        const texto = respuestaAbierta.split('-')[1].trim();
+        let resultado = productos.find(ref => ref.split('-')[1].trim() === texto)
+        $('#respuestaSelectProductos').val(resultado).prop('disabled', true).trigger('change');
+
+        $('#popUpRespuestaFecha .modal-title').text('Ver respuesta');
+        $('#popUpRespuestaFecha .cancelarPopUpRespuestaFecha').text('Cerrar');
+        $('.guardarRespuestaFecha').hide();
+
+
+        $('#popUpRespuestaFecha').modal('show');
+    } else if (tipoRespuesta == 11) //RESPUESTA SELECTOR EQUIPOS§
+    {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        $('#respuestaFechaText').hide();
+        $('#respuestaSelectNumerico').next('.select2-container').hide();
+        $('#respuestaSelectReferencias').next('.select2-container').hide();
+        $('#respuestaSelectProductos').next('.select2-container').hide();
+        $('#respuestaSelectLotes').next('.select2-container').hide();
+        $('#respuestaSelectEquipos').next('.select2-container').show();
+        $('#respuestaSelectAreas').next('.select2-container').hide();
+        $('#respuestaSelectMotivos').next('.select2-container').hide();
+
+        $('#respuestaSelectEquipos').val(respuestaAbierta).trigger('change');
+
+        if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
+            $('.guardarRespuestaFecha').hide();
+        } else {
+            $('.guardarRespuestaFecha').show();
+        }
+
+        $('#popUpRespuestaFecha').modal('show');
+    }
+    else if (tipoRespuesta == 13) //RESPUESTA SELECTOR LOTES
+    {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        $('#respuestaFechaText').hide();
+        $('#respuestaSelectNumerico').next('.select2-container').hide();
+        $('#respuestaSelectReferencias').next('.select2-container').hide();
+        $('#respuestaSelectProductos').next('.select2-container').hide();
+        $('#respuestaSelectEquipos').next('.select2-container').hide();
+        $('#respuestaSelectLotes').next('.select2-container').show();
+        $('#respuestaSelectAreas').next('.select2-container').hide();
+        $('#respuestaSelectMotivos').next('.select2-container').hide();
+
+        $('#respuestaSelectLotes').val(respuestaAbierta).trigger('change');
+
+        if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
+            $('.guardarRespuestaFecha').hide();
+        } else {
+            $('.guardarRespuestaFecha').show();
+        }
+
+        $('#popUpRespuestaFecha').modal('show');
+    } else if (tipoRespuesta == 14) //RESPUESTA SELECTOR AREAS
+    {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        $('#respuestaFechaText').hide();
+        $('#respuestaSelectNumerico').next('.select2-container').hide();
+        $('#respuestaSelectReferencias').next('.select2-container').hide();
+        $('#respuestaSelectProductos').next('.select2-container').hide();
+        $('#respuestaSelectEquipos').next('.select2-container').hide();
+        $('#respuestaSelectLotes').next('.select2-container').hide();
+        $('#respuestaSelectAreas').next('.select2-container').show();
+        $('#respuestaSelectMotivos').next('.select2-container').hide();
+
+        $('#respuestaSelectAreas').val(respuestaAbierta).trigger('change');
+
+        if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
+            $('.guardarRespuestaFecha').hide();
+        } else {
+            $('.guardarRespuestaFecha').show();
+        }
+
+        $('#popUpRespuestaFecha').modal('show');
+    } else if (tipoRespuesta == 15) //RESPUESTA SELECTOR MOTIVOS
+    {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        $('#respuestaFechaText').hide();
+        $('#respuestaSelectNumerico').next('.select2-container').hide();
+        $('#respuestaSelectReferencias').next('.select2-container').hide();
+        $('#respuestaSelectProductos').next('.select2-container').hide();
+        $('#respuestaSelectEquipos').next('.select2-container').hide();
+        $('#respuestaSelectLotes').next('.select2-container').hide();
+        $('#respuestaSelectAreas').next('.select2-container').hide();
+        $('#respuestaSelectMotivos').next('.select2-container').show();
+
+        const contenedor = control.closest('.contenedosPreguntas');
+
+        const respuesta = contenedor.querySelector('.respuesta');
+        const valorRespuestaAbierta = respuesta.getAttribute('respuestaabierta');
+
+        console.log(valorRespuestaAbierta);
+
+        let area = areas.find(element => (valorRespuestaAbierta == element.nombre));
+        let motivos = [];
+
+        if (area && area.motivos) {
+            motivos = area.motivos;
+        }
+
+        $('#respuestaSelectMotivos').empty().trigger('change');
+
+        motivos.forEach(element => {
+            $('#respuestaSelectMotivos').append(`<option value="${element.nombre}">${element.nombre}</option>`);
+        });
+
+        $('#respuestaSelectMotivos').val(respuestaAbierta).trigger('change');
+
+        if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
+            $('.guardarRespuestaFecha').hide();
+        } else {
+            $('.guardarRespuestaFecha').show();
+        }
+
+        $('#popUpRespuestaFecha').modal('show');
+    }
+    else if (tipoRespuesta == 7) //RESPUESTA FECHA
+    {
+        objetoEnviarGlobal = objetoEnviar;
+        controlGlobal = control;
+
+        if (respuestaAbierta != 'null')
+            $('#respuestaFechaText').val(respuestaAbierta);
+        else
+            $('#respuestaFechaText').val(new Date().toLocaleDateString("en-CA"));
+
+        $('#popUpRespuestaFecha').modal('show');
+    } else {
         $.ajax({
             type: 'POST',
             url: '/listachequeo/ejecucion/agregarRespuestaListaChequeo',
@@ -482,27 +1078,27 @@ function OnClickRespuesta(control) {
                 // CargandoNoMostrar();
                 switch (data.codigoRespuesta) {
                     case 206:
-    
+
                         let padre = $(control).parents().eq(2);
                         let listaRespuestas = $(padre).find('.respuesta');
                         $.each(listaRespuestas, function (indexInArray, itemRespuesta) {
                             $(itemRespuesta).removeClass('respuestaSeleccion');
-                            $(itemRespuesta).attr('respuestaAbierta','null');
+                            $(itemRespuesta).attr('respuestaAbierta', 'null');
                         });
-    
+
                         $(control).addClass('respuestaSeleccion');
                         toastr.success(data.mensaje);
                         break;
-    
+
                     case 406:
                         toastr.error(data.mensaje);
-    
+
                         break;
-    
+
                     default:
                         break;
                 }
-    
+
             },
             error: function (data) {
                 // CargandoNoMostrar()
@@ -510,19 +1106,17 @@ function OnClickRespuesta(control) {
         });
     }
 
-    
+
 }
 
-function OnClickGuardarRespuestaAbierta() 
-{
-    if($('#respuestaAbiertaText').val() == '')
-    {
+function OnClickGuardarRespuestaAbierta() {
+    if ($('#respuestaAbiertaText').val() == '') {
         toastr.warning('Debes escribir tu respuesta');
         $('#respuestaAbiertaText').focus();
         return;
     }
-    
-    objetoEnviarGlobal.respuestaAbierta =  $('#respuestaAbiertaText').val();
+
+    objetoEnviarGlobal.respuestaAbierta = $('#respuestaAbiertaText').val();
 
     $.ajax({
         type: 'POST',
@@ -533,8 +1127,7 @@ function OnClickGuardarRespuestaAbierta()
         beforeSend: function () {
             // CargandoMostrar();
         },
-        success: function (data) 
-        {
+        success: function (data) {
             // CargandoNoMostrar();
             switch (data.codigoRespuesta) {
                 case 206:
@@ -569,7 +1162,7 @@ function OnClickGuardarRespuestaAbierta()
 
 var controlPlanAccionM;
 //FUNCION PARA PLAN DE ACCION MANUAL
-function OnClickPlanAccionM(control){
+function OnClickPlanAccionM(control) {
     let div = $(control).parent().parent().parent().parent().parent()
     let idPregunta = $(div).attr('idpregunta')
     let idListaChequeo = $('.datosLista').attr('idListaChequeo');
@@ -588,7 +1181,7 @@ function OnClickPlanAccionM(control){
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data:{
+        data: {
             idpregunta: idPregunta,
             idListaChequeo: idListaChequeo,
             evaluadoId: evaluadoId
@@ -598,33 +1191,32 @@ function OnClickPlanAccionM(control){
         beforeSend: function () {
             CargandoMostrar();
         },
-        success: function (res){
+        success: function (res) {
             let html = ''
-            $.each(res.datos, function(index, valor){
+            $.each(res.datos, function (index, valor) {
                 let etiqueta = 'input'
                 let obligatorio = ''
                 let tipo_input = 'text'
                 //VALIDO EL TIPO DE INPUT
-                if(valor.opcion_id == 4){
+                if (valor.opcion_id == 4) {
                     tipo_input = 'date'
-                }else if(valor.opcion_id == 7){
+                } else if (valor.opcion_id == 7) {
                     tipo_input = 'number'
-                }else if(valor.opcion_id == 9){
+                } else if (valor.opcion_id == 9) {
                     etiqueta = 'textarea'
                 }
 
-                let caracter="";
-                if(valor.obligatorio == 1){
+                let caracter = "";
+                if (valor.obligatorio == 1) {
                     obligatorio = 'required="required"';
                     caracter = `<span style="color:red;font-weight: bold;">*</span>`
                 }
 
-                if(valor.opcion_id == 8) //SI ES RESPONSABLE DEBE SER UN SELECT
+                if (valor.opcion_id == 8) //SI ES RESPONSABLE DEBE SER UN SELECT
                 {
 
                     let responsableOpciones = '<option value="0">Selecciona el responsable</option>';
-                    $.each(res.Responsables, function (indexInArray, responsable) 
-                    { 
+                    $.each(res.Responsables, function (indexInArray, responsable) {
                         responsableOpciones += `<option value="${responsable.id}">${responsable.nombre_completo} (${responsable.CARGO})</option>`;
                     });
 
@@ -636,11 +1228,10 @@ function OnClickPlanAccionM(control){
                         </select>
                     </div>`
                 }
-                else if(valor.opcion_id == 5) // SI ES ¿QUIEN LO HARÁ DEBE SER UN SELECT
+                else if (valor.opcion_id == 5) // SI ES ¿QUIEN LO HARÁ DEBE SER UN SELECT
                 {
                     let quienHaraOpciones = '<option value="0">Selecciona a quién</option>';
-                    $.each(res.Responsables, function (indexInArray, responsable) 
-                    { 
+                    $.each(res.Responsables, function (indexInArray, responsable) {
                         quienHaraOpciones += `<option value="${responsable.id}">${responsable.nombre_completo} (${responsable.CARGO})</option>`;
                     });
 
@@ -652,8 +1243,7 @@ function OnClickPlanAccionM(control){
                         </select>
                     </div>`
                 }
-                else
-                {
+                else {
                     html += `
                     <div class="form-group form-inputs" >
                         <label for="exampleFormControlInput1">${valor.nom_opcion} ${caracter}</label>
@@ -661,18 +1251,18 @@ function OnClickPlanAccionM(control){
                     </div>
                 `
                 }
-                
-                
+
+
             })
             //SI EL BOTON SE ENCUENTRA ACTIVO ENTONCES CONSULTO LA DATA QUE SE ENCUENTRA ALMACENADA EN LA BD PARA LUEGO PINTARLA
-            if($(control).hasClass('respuestaOpcSeleccion')){
+            if ($(control).hasClass('respuestaOpcSeleccion')) {
                 $.ajax({
                     type: 'POST',
                     url: '/listachequeo/ejecucion/plan_accion_manual/datos',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    data:{
+                    data: {
                         idpregunta: idPregunta
                     },
                     cache: false,
@@ -680,49 +1270,49 @@ function OnClickPlanAccionM(control){
                     beforeSend: function () {
                         CargandoMostrar();
                     },
-                    success: function (res){
+                    success: function (res) {
                         let inputs = $('.form-plan-accion').find('.input-plan-accionm')
                         let selects = $('.form-plan-accion').find('.selectResponsablePopUp');
                         let selectsQuien = $('.form-plan-accion').find('.selectQuienLoHaraPopUp');
-                        
-                        $.each(res.data, function(i, el){
-                            $.each(inputs, function(index, elem){
+
+                        $.each(res.data, function (i, el) {
+                            $.each(inputs, function (index, elem) {
                                 let idopc = parseInt($(elem).attr('idopc'))
-                               
-                                if(idopc == el.plan_accio_man_opc_id){
+
+                                if (idopc == el.plan_accio_man_opc_id) {
                                     $(elem).val(el.respuesta)
                                 }
                             })
 
-                            if($(selects).length != 0) // SI TIENE SELECTS
+                            if ($(selects).length != 0) // SI TIENE SELECTS
                             {
                                 let controlSelect = $('.form-plan-accion').find('.selectResponsablePopUp')[0];
-                                let idOpc = $(controlSelect).attr('idopc'); 
+                                let idOpc = $(controlSelect).attr('idopc');
 
-                                if(idOpc == el.plan_accio_man_opc_id)
+                                if (idOpc == el.plan_accio_man_opc_id)
                                     $(controlSelect).val(el.respuesta).change();
                             }
 
-                            if($(selectsQuien).length != 0) // SI TIENE SELECTS (QUIEN LO HARA)
+                            if ($(selectsQuien).length != 0) // SI TIENE SELECTS (QUIEN LO HARA)
                             {
                                 let controlSelectQuienLoHara = $('.form-plan-accion').find('.selectQuienLoHaraPopUp')[0];
-                                let idOpc = $(controlSelectQuienLoHara).attr('idopc'); 
+                                let idOpc = $(controlSelectQuienLoHara).attr('idopc');
 
-                                if(idOpc == el.plan_accio_man_opc_id)
+                                if (idOpc == el.plan_accio_man_opc_id)
                                     $(controlSelectQuienLoHara).val(el.respuesta).change();
                             }
                         })
-                        
+
                     },
-                    error: function(error){
+                    error: function (error) {
                         toastr.error('Error al obtener la informacion de la lista de chequeo')
                     }
                 })
             }
 
             $('.cuerpo-pa-m').append(html)
-            $(".selectResponsablePopUp").select2({dropdownParent: $('#modal-plan-manual'),});
-            $(".selectQuienLoHaraPopUp").select2({dropdownParent: $('#modal-plan-manual'),});
+            $(".selectResponsablePopUp").select2({ dropdownParent: $('#modal-plan-manual'), });
+            $(".selectQuienLoHaraPopUp").select2({ dropdownParent: $('#modal-plan-manual'), });
             CargandoNoMostrar()
             $('.guardar-plan-accion-manual').attr("idpregunta", idPregunta)
             $('#modal-plan-manual').modal('show')
@@ -731,7 +1321,7 @@ function OnClickPlanAccionM(control){
             toastr.warning('Error al obtener la data para plan de accion manual')
         }
     })
-    
+
 
 }
 
@@ -739,7 +1329,7 @@ $('#modal-plan-manual').on('hidden.bs.modal', function (e) {
     $('.cuerpo-pa-m').html('')
 })
 
-$('.guardar-plan-accion-manual').on('click', function(){
+$('.guardar-plan-accion-manual').on('click', function () {
     let inputs = $('.form-plan-accion').find('.input-plan-accionm')
     let idpregunta = $('.guardar-plan-accion-manual').attr('idpregunta')
     let idListaChequeo = $('.datosLista').attr('idlistachequeo')
@@ -748,59 +1338,52 @@ $('.guardar-plan-accion-manual').on('click', function(){
         idListaChequeo
 
     }
-    
+
     let algunCampoRequerido = 0;
-    $.each(inputs, function(index, elem){
+    $.each(inputs, function (index, elem) {
         let idopc = $(elem).attr('idopc')
         let requerido = $(elem).attr('required');
 
-        if(requerido == 'required' && $(elem).val() == '')
+        if (requerido == 'required' && $(elem).val() == '')
             algunCampoRequerido = 1;
-       
-        if(data.hasOwnProperty(idopc) == false &&  idopc != undefined){
+
+        if (data.hasOwnProperty(idopc) == false && idopc != undefined) {
             data[idopc] = $(elem).val()
         }
-        
+
     })
 
-    if($('.form-plan-accion').find('.selectResponsablePopUp').length != 0)
-    {
+    if ($('.form-plan-accion').find('.selectResponsablePopUp').length != 0) {
         let controlSelect = $('.form-plan-accion').find('.selectResponsablePopUp')[0];
-        let idOpc = $(controlSelect).attr('idopc'); 
+        let idOpc = $(controlSelect).attr('idopc');
         let esObligatorio = $(controlSelect).attr('esObligatorio');
-        if(esObligatorio == 1)
-        {
-            if($(controlSelect).val() == 0)
-            {
+        if (esObligatorio == 1) {
+            if ($(controlSelect).val() == 0) {
                 toastr.warning('Debes ingresar los campos que son requeridos (*)')
                 return;
             }
         }
 
-        if(data.hasOwnProperty(idOpc) == false &&  idOpc != undefined)
+        if (data.hasOwnProperty(idOpc) == false && idOpc != undefined)
             data[idOpc] = $(controlSelect).val();
     }
 
-    if($('.form-plan-accion').find('.selectQuienLoHaraPopUp').length != 0)
-    {
+    if ($('.form-plan-accion').find('.selectQuienLoHaraPopUp').length != 0) {
         let controlSelectQuienHara = $('.form-plan-accion').find('.selectQuienLoHaraPopUp')[0];
-        let idOpcQuien = $(controlSelectQuienHara).attr('idopc'); 
+        let idOpcQuien = $(controlSelectQuienHara).attr('idopc');
         let esObligatorioQuien = $(controlSelectQuienHara).attr('esObligatorio');
-        if(esObligatorioQuien == 1)
-        {
-            if($(controlSelectQuienHara).val() == 0)
-            {
+        if (esObligatorioQuien == 1) {
+            if ($(controlSelectQuienHara).val() == 0) {
                 toastr.warning('Debes ingresar los campos que son requeridos (*)')
                 return;
             }
         }
 
-        if(data.hasOwnProperty(idOpcQuien) == false &&  idOpcQuien != undefined)
+        if (data.hasOwnProperty(idOpcQuien) == false && idOpcQuien != undefined)
             data[idOpcQuien] = $(controlSelectQuienHara).val();
     }
 
-    if(algunCampoRequerido != 0)
-    {
+    if (algunCampoRequerido != 0) {
         toastr.warning('Debes ingresar los campos que son requeridos (*)')
         return;
     }
@@ -814,7 +1397,7 @@ $('.guardar-plan-accion-manual').on('click', function(){
         },
         data: data,
         dataType: 'json',
-        success: function (resp){
+        success: function (resp) {
             $('#modal-plan-manual').modal('hide')
             $(controlPlanAccionM).addClass('respuestaOpcSeleccion')
             toastr.success('Se ha guardado el plan de accíon')
@@ -873,8 +1456,7 @@ function OnClickPopUpComentarioCerrar() {
     $('#popUpComentario').modal('hide');
 }
 
-function OnClickPopUpRespuestaCerrar() 
-{
+function OnClickPopUpRespuestaCerrar() {
     $('#respuestaAbiertaText').val('');
     $('#popUpRespuestaAbierta').modal('hide');
 }
@@ -940,14 +1522,14 @@ function cargarArchivosAdjuntos() {
             let cantArchivosCargados = fileNames.length
             if (cantArchivosCargados <= 5 && sizeFiles <= 5100000) {
                 let sizeAdjuntosBD = tamanoAdjuntosBD(objetoAdjuntos.adjuntos) //Valido el tamaño de los archivos cargados en BD
-                if(cantArchivosListados < 5 && sizeAdjuntosBD <= 5100000){//valido que los datos en la lista sean menor a 5
+                if (cantArchivosListados < 5 && sizeAdjuntosBD <= 5100000) {//valido que los datos en la lista sean menor a 5
                     for (var x = 0; x < fileNames.length; x++) {
                         $ = jQuery.noConflict()
                         formDataAdjuntos.append("adjuntos[]", fileNames[x])
                         objetoAdjuntos.adjuntos.push({ name: fileNames[x].name, size: fileNames[x].size })
                         pintarNombreAdjuntos(fileNames[x].name, x, true)
                     }
-                }else{
+                } else {
                     toastr.warning('Deben ser maximo 5 archivos y un total de 5MB.');
                 }
             } else {
@@ -965,17 +1547,17 @@ function cargarArchivosAdjuntos() {
             let cantArchivosCargados = fileNames.length
             if (cantArchivosCargados <= 5 && sizeFiles <= 5100000) {
                 let sizeAdjuntosBD = tamanoAdjuntosBD(objetoAdjuntos.adjuntos)
-                if(cantArchivosListados < 5 && sizeAdjuntosBD <= 5100000){//valido que los datos en la lista sean menor a 5
+                if (cantArchivosListados < 5 && sizeAdjuntosBD <= 5100000) {//valido que los datos en la lista sean menor a 5
                     for (var x = 0; x < fileNames.length; x++) {
                         $ = jQuery.noConflict()
                         formDataAdjuntos.append("adjuntos[]", fileNames[x])
                         objetoAdjuntos.adjuntos.push({ name: fileNames[x].name, size: fileNames[x].size })
                         pintarNombreAdjuntos(fileNames[x].name, x, true)
                     }
-                }else{
+                } else {
                     toastr.warning('Deben ser maximo 5 archivos y un total de 5MB.');
                 }
-                
+
             } else {
                 toastr.warning('Deben ser maximo 5 archivos y un total de 5MB.');
             }
@@ -985,9 +1567,9 @@ function cargarArchivosAdjuntos() {
     }
 }
 
-function tamanoAdjuntosBD(data){
+function tamanoAdjuntosBD(data) {
     let size = 0
-    data.forEach(el=>{
+    data.forEach(el => {
         size += el.size
     })
     return size
@@ -1017,7 +1599,7 @@ function limpiarVariablesAdjuntos() {
 }
 
 function OnClickGuardarAdjuntos() {
- 
+
     let filesData = formDataAdjuntos
 
     let archivosAgregados = $('.file_names').length
@@ -1071,8 +1653,8 @@ function EliminarArchivo(control) {
     if (idFile == '' && index != 'null') {
         let values = formDataAdjuntos.getAll("adjuntos[]")
         //OBTENGO EL ID DEL ELEMENTO QUE VOY A ELIMINAR
-        values.forEach((el, i)=>{
-            if(nombreFile == el.name)
+        values.forEach((el, i) => {
+            if (nombreFile == el.name)
                 index = i
         })
         values.splice(index, 1)
@@ -1082,10 +1664,10 @@ function EliminarArchivo(control) {
         })
         etiquetaPadre.remove()
         let fileControl = document.getElementById('et_pb_contact_brand_file_request_0');
-        fileControl.value=null;
-        objetoAdjuntos.adjuntos = objetoAdjuntos.adjuntos.filter(function(elemento) { return elemento.name == nombreFile; });
-        
-    }else{//Si el archivo ya esta en el servidor, prodecedo a eliminarlo
+        fileControl.value = null;
+        objetoAdjuntos.adjuntos = objetoAdjuntos.adjuntos.filter(function (elemento) { return elemento.name == nombreFile; });
+
+    } else {//Si el archivo ya esta en el servidor, prodecedo a eliminarlo
         $.ajax({
             type: 'POST',
             url: '/listachequeo/ejecucion/elimnarArchivoAdjunto',
@@ -1606,8 +2188,7 @@ function OnClickFinalizarListaChequeo() {
                         cancelButtonClass: 'btn btn-secondary ml-3',
                         cancelButtonText: 'No',
                     }).then(function (response) {
-                        if (response.dismiss == undefined) 
-                        {
+                        if (response.dismiss == undefined) {
                             let idListaChequeo = $('.datosLista').attr('idListaChequeo');
                             $.ajax({
                                 type: "POST",
@@ -1633,7 +2214,7 @@ function OnClickFinalizarListaChequeo() {
                                                 data.datos;
                                             window.location.href = url;
                                             break;
-                        
+
                                         case 402:
                                             Swal.fire({
                                                 title: "No puedes continuar con la ejecución",
@@ -1645,7 +2226,7 @@ function OnClickFinalizarListaChequeo() {
                                                 allowOutsideClick: false,
                                             }).then((result) => { });
                                             break;
-                        
+
                                         case 406:
                                             if (data.datos != 1) {
                                                 // DIFERENTE ADMINISTRADOR
@@ -1671,7 +2252,7 @@ function OnClickFinalizarListaChequeo() {
                                                         let idPlan = $.trim(
                                                             $("#popUpSuscripcion").attr("planActual")
                                                         );
-                        
+
                                                         switch (idPlan) {
                                                             case "1":
                                                                 let control = $(
@@ -1683,7 +2264,7 @@ function OnClickFinalizarListaChequeo() {
                                                                     .find(".btn-audeed")
                                                                     .addClass("hidden");
                                                                 break;
-                        
+
                                                             case "2":
                                                             case "3":
                                                             case "4":
@@ -1701,13 +2282,13 @@ function OnClickFinalizarListaChequeo() {
                                                                         .find(".btn-audeed")
                                                                         .addClass("hidden");
                                                                 }
-                        
+
                                                                 break;
-                        
+
                                                             default:
                                                                 break;
                                                         }
-                        
+
                                                         $(".iconoCerrarPopUpPlanes").removeClass(
                                                             "hidden"
                                                         );
@@ -1716,7 +2297,7 @@ function OnClickFinalizarListaChequeo() {
                                                 });
                                             }
                                             break;
-                        
+
                                         default:
                                             break;
                                     }
@@ -1726,8 +2307,7 @@ function OnClickFinalizarListaChequeo() {
                                 },
                             });
                         }
-                        else
-                        {
+                        else {
                             let url = window.location.origin + '/listachequeo/ejecutadas';
                             window.location.href = url;
                         }
@@ -1749,16 +2329,14 @@ function OnClickFinalizarListaChequeo() {
     });
 }
 
-function OnClickGuardarRespuestaNumerica() 
-{
-    if($('#respuestaNumericaText').val() == '')
-    {
+function OnClickGuardarRespuestaNumerica() {
+    if ($('#respuestaNumericaText').val() == '') {
         toastr.warning('Debes escribir tu respuesta');
         $('#respuestaNumericaText').focus();
         return;
     }
-    
-    objetoEnviarGlobal.respuestaAbierta =  $('#respuestaNumericaText').val();
+
+    objetoEnviarGlobal.respuestaAbierta = $('#respuestaNumericaText').val();
 
     $.ajax({
         type: 'POST',
@@ -1769,8 +2347,7 @@ function OnClickGuardarRespuestaNumerica()
         beforeSend: function () {
             // CargandoMostrar();
         },
-        success: function (data) 
-        {
+        success: function (data) {
             // CargandoNoMostrar();
             switch (data.codigoRespuesta) {
                 case 206:
@@ -1803,10 +2380,227 @@ function OnClickGuardarRespuestaNumerica()
     });
 }
 
-function OnClickPopUpRespuestaCerrarNumerica() 
-{
+function OnClickPopUpRespuestaCerrarNumerica() {
     $('#respuestaNumericaText').val('');
     $('#popUpRespuestaNumerica').modal('hide');
+}
+
+function OnClickGuardarRespuestaTiempo() {
+    if ($('#respuestaTiempoText').val() == '') {
+        toastr.warning('Debes seleccionar el tiempo');
+        $('#respuestaTiempoText').focus();
+        return;
+    }
+
+    objetoEnviarGlobal.respuestaAbierta = $('#respuestaTiempoText').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/listachequeo/ejecucion/agregarRespuestaListaChequeo',
+        data: objetoEnviarGlobal,
+        cache: false,
+        dataType: 'json',
+        beforeSend: function () {
+            // CargandoMostrar();
+        },
+        success: function (data) {
+            // CargandoNoMostrar();
+            switch (data.codigoRespuesta) {
+                case 206:
+
+                    let padre = $(controlGlobal).parents().eq(2);
+                    let listaRespuestas = $(padre).find('.respuesta');
+                    $.each(listaRespuestas, function (indexInArray, itemRespuesta) {
+                        $(itemRespuesta).removeClass('respuestaSeleccion');
+                    });
+
+                    $(controlGlobal).addClass('respuestaSeleccion');
+                    $(controlGlobal).attr('respuestaAbierta', $('#respuestaTiempoText').val());
+                    $('#popUpRespuestaTiempo').modal('hide');
+                    toastr.success(data.mensaje);
+                    if (data.datos.recargar) {
+                        window.location.reload();
+                    }
+                    break;
+
+                case 406:
+                    toastr.error(data.mensaje);
+
+                    break;
+
+                default:
+                    break;
+            }
+
+        },
+        error: function (data) {
+            // CargandoNoMostrar()
+        }
+    });
+}
+
+function OnClickPopUpRespuestaCerrarTiempo() {
+    $('#respuestaTiempoText').val('');
+    $('#popUpRespuestaTiempo').modal('hide');
+}
+
+function OnClickGuardarRespuestaFecha() {
+    if (objetoEnviarGlobal.tipoRespuesta == 8) {
+        if ($('#respuestaSelectNumerico').val() == '') {
+            toastr.warning('Debes seleccionar una opción');
+            $('#respuestaSelectNumerico').focus();
+            return;
+        }
+
+        objetoEnviarGlobal.respuestaAbierta = $('#respuestaSelectNumerico').val();
+
+    } else if (objetoEnviarGlobal.tipoRespuesta == 9) {
+        if ($('#respuestaSelectReferencias').val() == '') {
+            toastr.warning('Debes seleccionar una opción');
+            $('#respuestaSelectReferencias').focus();
+            return;
+        }
+
+        objetoEnviarGlobal.respuestaAbierta = $('#respuestaSelectReferencias').val();
+
+    }
+    else if (objetoEnviarGlobal.tipoRespuesta == 10) {
+        if ($('#respuestaSelectProductos').val() == '') {
+            toastr.warning('Debes seleccionar una opción');
+            $('#respuestaSelectProductos').focus();
+            return;
+        }
+
+        objetoEnviarGlobal.respuestaAbierta = $('#respuestaSelectProductos').val();
+
+    }
+    else if (objetoEnviarGlobal.tipoRespuesta == 11) {
+        if ($('#respuestaSelectEquipos').val() == '') {
+            toastr.warning('Debes seleccionar una opción');
+            $('#respuestaSelectEquipos').focus();
+            return;
+        }
+
+        objetoEnviarGlobal.respuestaAbierta = $('#respuestaSelectEquipos').val();
+    }
+    else if (objetoEnviarGlobal.tipoRespuesta == 13) {
+        if ($('#respuestaSelectLotes').val() == '') {
+            toastr.warning('Debes seleccionar una opción');
+            $('#respuestaSelectLotes').focus();
+            return;
+        }
+
+        objetoEnviarGlobal.respuestaAbierta = $('#respuestaSelectLotes').val();
+    } else if (objetoEnviarGlobal.tipoRespuesta == 14) {
+        if ($('#respuestaSelectAreas').val() == '') {
+            toastr.warning('Debes seleccionar una opción');
+            $('#respuestaSelectAreas').focus();
+            return;
+        }
+
+        objetoEnviarGlobal.respuestaAbierta = $('#respuestaSelectAreas').val();
+    } else if (objetoEnviarGlobal.tipoRespuesta == 15) {
+        if ($('#respuestaSelectMotivos').val() == '') {
+            toastr.warning('Debes seleccionar una opción');
+            $('#respuestaSelectMotivos').focus();
+            return;
+        }
+
+        objetoEnviarGlobal.respuestaAbierta = $('#respuestaSelectMotivos').val();
+    }
+    else {
+        if ($('#respuestaFechaText').val() == '') {
+            toastr.warning('Debes seleccionar la fecha');
+            $('#respuestaFechaText').focus();
+            return;
+        }
+
+        objetoEnviarGlobal.respuestaAbierta = $('#respuestaFechaText').val();
+    }
+
+    //objetoEnviarGlobal.respuestaAbierta = $('#respuestaFechaText').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/listachequeo/ejecucion/agregarRespuestaListaChequeo',
+        data: objetoEnviarGlobal,
+        cache: false,
+        dataType: 'json',
+        beforeSend: function () {
+            // CargandoMostrar();
+        },
+        success: function (data) {
+            // CargandoNoMostrar();
+            switch (data.codigoRespuesta) {
+                case 206:
+
+                    let padre = $(controlGlobal).parents().eq(2);
+                    let listaRespuestas = $(padre).find('.respuesta');
+                    $.each(listaRespuestas, function (indexInArray, itemRespuesta) {
+                        $(itemRespuesta).removeClass('respuestaSeleccion');
+                    });
+
+                    $(controlGlobal).addClass('respuestaSeleccion');
+
+                    if (objetoEnviarGlobal.tipoRespuesta == 8) {
+                        $(controlGlobal).attr('respuestaAbierta', $('#respuestaSelectNumerico').val());
+                    } else if (objetoEnviarGlobal.tipoRespuesta == 9) {
+                        $(controlGlobal).attr('respuestaAbierta', $('#respuestaSelectReferencias').val());
+                    } else if (objetoEnviarGlobal.tipoRespuesta == 10) {
+                        $(controlGlobal).attr('respuestaAbierta', $('#respuestaSelectProductos').val());
+                    } else if (objetoEnviarGlobal.tipoRespuesta == 11) {
+                        $(controlGlobal).attr('respuestaAbierta', $('#respuestaSelectEquipos').val());
+                    } else if (objetoEnviarGlobal.tipoRespuesta == 13) {
+                        $(controlGlobal).attr('respuestaAbierta', $('#respuestaSelectLotes').val());
+                        window.location.reload()
+                    } else if (objetoEnviarGlobal.tipoRespuesta == 14) {
+                        $(controlGlobal).attr('respuestaAbierta', $('#respuestaSelectAreas').val());
+
+                        let area = areas.find(element => ($('#respuestaSelectAreas').val() == element.nombre));
+                        let motivos = [];
+
+                        if (area && area.motivos) {
+                            motivos = area.motivos;
+                        }
+
+                        motivos.forEach(element => {
+                            $('#respuestaSelectMotivos').append(`<option value="${element.nombre}">${element.nombre}</option>`);
+                        });
+
+                    } else if (objetoEnviarGlobal.tipoRespuesta == 15) {
+                        $(controlGlobal).attr('respuestaAbierta', $('#respuestaSelectMotivos').val());
+                    }
+                    else {
+                        $(controlGlobal).attr('respuestaAbierta', $('#respuestaFechaText').val());
+                    }
+
+                    $('#popUpRespuestaFecha').modal('hide');
+                    toastr.success(data.mensaje);
+
+                    if (data.datos.recargar) {
+                        window.location.reload();
+                    }
+                    break;
+
+                case 406:
+                    toastr.error(data.mensaje);
+
+                    break;
+
+                default:
+                    break;
+            }
+
+        },
+        error: function (data) {
+            // CargandoNoMostrar()
+        }
+    });
+}
+
+function OnClickPopUpRespuestaCerrarFecha() {
+    $('#respuestaFechaText').val('');
+    $('#popUpRespuestaFecha').modal('hide');
 }
 
 $('.cancelarPopUp').on('click', OnClickPopUpComentarioCerrar);
@@ -1818,3 +2612,7 @@ $('.cancelarPopUpRespuesta').on('click', OnClickPopUpRespuestaCerrar);
 $('.guardarRespuesta').on('click', OnClickGuardarRespuestaAbierta);
 $('.guardarRespuestaNumerica').on('click', OnClickGuardarRespuestaNumerica);
 $('.cancelarPopUpRespuestaNumerica').on('click', OnClickPopUpRespuestaCerrarNumerica);
+$('.guardarRespuestaTiempo').on('click', OnClickGuardarRespuestaTiempo);
+$('.cancelarPopUpRespuestaTiempo').on('click', OnClickPopUpRespuestaCerrarTiempo);
+$('.guardarRespuestaFecha').on('click', OnClickGuardarRespuestaFecha);
+$('.cancelarPopUpRespuestaFecha').on('click', OnClickPopUpRespuestaCerrarFecha);
