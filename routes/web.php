@@ -219,6 +219,7 @@ Route::GET('/informes/descargar-excel-lista', ['as' => 'descargar_excel_lista_ch
 Route::post('/listachequeo/detalle/adjuntosConsulta', 'Admin\ListasChequeoEjecutadasController@consultarAdjuntos');
 Route::GET('/listachequeo/detalle/descargarAdjunto/{id}', 'Admin\ListasChequeoEjecutadasController@descargarAdjunto');
 Route::post('/listachequeo/detalle/cargar_plan_accion_manual', 'Admin\ListasChequeoEjecutadasController@traer_data_plan_accion_manual');
+Route::post('/listachequeo/detalle/revisado', 'Admin\ListasChequeoEjecutadasController@setRevisado');
 
 //PLAN DE ACCIÓN MANUAL
 Route::get('/listachequeo/planaccion/manual', ['as' => 'Plan_action_manual', 'uses' => 'Admin\ListaChequeoPlanAccionController@IndexPlanAccionManual']);

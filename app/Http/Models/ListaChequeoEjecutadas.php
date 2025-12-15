@@ -24,6 +24,7 @@ class ListaChequeoEjecutadas extends Model
         'estado',
         'fecha_realizacion',
         'finished_at',
-        'obsgeneral'
+        'obsgeneral',
+        'revisado'
     ];
 }
