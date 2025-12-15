@@ -1739,7 +1739,7 @@ class InformesController extends Controller
                 p.id AS PREGUNTA_ID,
                 p.nombre AS PREGUNTA,
                 u.nombre_completo AS FIRMA_OPERARIO,
-                'NUEVO CAMPO' AS FIRMA_LIDER,
+                IF(lce.revisado IS NULL, 'Sin revisión', us.nombre_completo) AS FIRMA_LIDER,
                 lce.id AS LISTA_EJECT_ID,
                 cat.id AS CATEGORIA_ID,
                 cat.nombre AS CATEGORIA_NOMBRE,
@@ -1753,6 +1753,7 @@ class InformesController extends Controller
             INNER JOIN categoria cat ON p.categoria_id = cat.id
             INNER JOIN categoria_etiquetas cet ON cat.id_etiqueta = cet.id
             INNER JOIN usuario u ON lce.usuario_id = u.id
+            LEFT JOIN usuario us ON lce.revisado = us.id
             WHERE lc.id = 149 AND lce.id IN ({$idsString})
             ORDER BY lce.id ASC, p.id ASC
         "));
