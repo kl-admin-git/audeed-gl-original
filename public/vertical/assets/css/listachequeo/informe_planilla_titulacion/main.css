@@ -1,0 +1,74 @@
+/* Estilos para Informe Planilla Titulación */
+
+.contenedorBuscador {
+    margin-bottom: 15px;
+}
+
+#btn-descargar-excel:hover {
+    color: #3a9638;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.contenedorTablaPerfiles {
+    overflow-x: auto;
+}
+
+.contenedorPaginacion {
+    margin-top: 20px;
+}
+
+/* Estilos para la tabla de planilla titulación */
+#tablaPlanillaTitulacion {
+    font-size: 12px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaPlanillaTitulacion th,
+#tablaPlanillaTitulacion td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    white-space: nowrap;
+}
+
+#tablaPlanillaTitulacion thead th {
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Mensaje de sin datos */
+#no-data-row td {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6 !important;
+}
+
+#no-data-row p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    #tablaPlanillaTitulacion {
+        font-size: 10px;
+    }
+    
+    #tablaPlanillaTitulacion th,
+    #tablaPlanillaTitulacion td {
+        padding: 5px;
+    }
+    
+    #no-data-row i {
+        font-size: 2rem !important;
+    }
+    
+    #no-data-row p {
+        font-size: 14px !important;
+    }
+}

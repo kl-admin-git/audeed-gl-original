@@ -1053,7 +1053,7 @@ function OnClickRespuesta(control) {
 
         $('#popUpRespuestaFecha').modal('show');
     }
-    else if (tipoRespuesta == 7) //RESPUESTA TIEMPO
+    else if (tipoRespuesta == 7) //RESPUESTA FECHA
     {
         objetoEnviarGlobal = objetoEnviar;
         controlGlobal = control;

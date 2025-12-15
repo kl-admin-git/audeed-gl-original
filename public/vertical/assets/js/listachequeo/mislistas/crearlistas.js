@@ -861,10 +861,14 @@ function CargarPopUpStepUno() {
 function CargarPopUpStepDos() {
     let stringCategorias = '';
     $.each(steps.stepsCarga.stepDos, function (indexInArray, items) {
-        stringCategorias += ComponenteIconos(Object.keys(items), items[Object.keys(items)]);
+        Object.entries(items).forEach((key, value) => {
+            let name_section = key[0];
+            let values_section = key[1];
+            stringCategorias += ComponenteIconos(name_section, values_section);
+        });
     });
 
-    $('.tipoRespuestaField').html(stringCategorias);
+    $('.tipoRespuestaField').html(`<div class="d-flex flex-wrap col-lg-12">${stringCategorias}</div>`);
 }
 
 function CargarPopUpStepCuatro() {
@@ -892,15 +896,15 @@ function ComponenteIconos(nombreCategoriaTipoRespuesta, tipoRespuestas) {
             <p class="card-title font-10 mt-0 ">${tipoRespuesta.NOMBRE_TIPO_RESPUESTA}</p>`;
         }
 
-        stringRespuestas += `<div class="col-lg-3">
+        stringRespuestas += `<div class="col-lg-3 mt-2  ">
                                 <div class=" cuerpoRespuestaStep" style="align-items: center;" idTipoRespuesta="${tipoRespuesta.ID_TIPO_RESPUESTA}" onclick="OnClickTipoRespuesta(this);">
                                     ${tipoRespuestaVariable}
                                 </div>
                             </div> `;
     });
 
-    string += `<div class="row">
-                    <div class="col-md-6">
+    string += `<div class="row col-lg-6">
+                    <div class="col-lg-12">
                         <label class="col-lg-12 text-center">${nombreCategoriaTipoRespuesta}</label>
                         <div class="form-group row d-flex justify-content-center">
                             ${stringRespuestas}

@@ -313,7 +313,7 @@
                             <div class="m-b-20">
                                 <div class="card-body">
                                     <div class="">
-                                        <input id="respuestaFechaText" class="form-control" placeholder="0000-00-00" />
+                                        <input id="respuestaFechaText" class="form-control" placeholder="0000-00-00" type="date"/>
                                         <select name="respuestaSelectEquipos" id="respuestaSelectEquipos"
                                             class="form-control select2 ">
 
