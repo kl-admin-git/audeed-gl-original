@@ -605,8 +605,13 @@ class ListasChequeoEjecutadasController extends Controller
         ->select(\DB::raw('IF(observacion_general IS NULL, "", observacion_general) AS OBS_GENERAL'))
         ->where('id', '=', $idListaEjecutada)
         ->first()->OBS_GENERAL;
-        
-        return view('Admin.listachequeo_detalle',compact('seccionUno','seccionDos','seccionTres','seccionCuatro','seccionQuinta', 'observacion_general'));
+
+        $revisado = $this->listaEjecutada
+        ->select('revisado')
+        ->where('id',  $idListaEjecutada)
+        ->first()->revisado;
+
+        return view('Admin.listachequeo_detalle',compact('seccionUno','seccionDos','seccionTres','seccionCuatro','seccionQuinta', 'observacion_general', 'idListaEjecutada', 'revisado'));
     }
 
     public function FuncionConsultaEncabezado($idListaEjecutada)
@@ -995,6 +1000,20 @@ class ListasChequeoEjecutadasController extends Controller
 
         return response()->json([
             'data' => $planAccionM
+        ]);
+    }
+
+    public function setRevisado(Request $request){
+        $revisado = $request->get('revisado');
+        $idListaEjecutada = $request->get('idListaEjecutada');
+        
+        $usuario = $revisado ? auth()->user()->id : null;
+
+        ListaChequeoEjecutadas::where('id', $idListaEjecutada)
+        ->update(['revisado' => $usuario]);
+
+        return response()->json([
+            'status' => 200
         ]);
     }
 

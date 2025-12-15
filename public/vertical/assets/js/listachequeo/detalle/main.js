@@ -181,3 +181,34 @@ $(document).on('click', '.descarga-excel-pdf', function () {
 
     $('#descargar-excel').submit()
 });
+
+$(document).on('change', '#revisadoCheck', async function () {
+    const revisado = $(this).is(':checked');
+
+    try {
+        const resp = await fetch('/listachequeo/detalle/revisado', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            body: JSON.stringify({
+                revisado: revisado,
+                idListaEjecutada: idListaEjecutada
+            })
+        });
+
+        const data = await resp.json();
+
+        if (data.status == 200) {
+            if (revisado) {
+                toastr.success("Lista de chequeo revisada.");
+            }else{
+                toastr.warning("Lista de chequeo sin revisar.");
+
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});

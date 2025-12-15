@@ -552,6 +552,24 @@
                     </div>
                 </div>
 
+                <div class="col-lg-12">
+                    <div class="card-header subtituloEncabezado">
+                        <p class="m-0">
+                            <a class="">
+                                REVISIÓN DE LA LISTA
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-12 card">
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" value="" id="revisadoCheck" {{ $revisado ? 'checked' : '' }}>
+                            <label class="form-check-label" for="revisadoCheck">
+                                Revisado
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
@@ -685,6 +703,7 @@
 @section('script')
 <script type="text/javascript">
     let seccionCuatro = {!! json_encode($seccionCuatro) !!};
+    let idListaEjecutada = {!! json_encode($idListaEjecutada) !!};
 </script>
 <script type="text/javascript" src="{{ assets_version('/vertical/assets/js/listachequeo/detalle/main.js') }}">
 </script>
