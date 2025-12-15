@@ -1656,7 +1656,7 @@ class InformesController extends Controller
     {
         $datosPlanilla = $this->SimularDatosPlanillaTitulacion();
         
-        return view('admin.informe_planilla_titulacion', compact('datosPlanilla'));
+        return view('Admin.informe_planilla_titulacion', compact('datosPlanilla'));
     }
 
     public function GetDataInitPlanillaTitulacion(Request $request)
