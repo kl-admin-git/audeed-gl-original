@@ -25,7 +25,7 @@ class MailResponsablesPlanAccionManual extends Mailable
             $this->nombre = $item->nombre;
         }
         $address = 'audiid@audiid.co';
-        $name = "Audiid";
+        $name = "Apptiva";
         return $this
         ->from($address, $name)
         ->subject('Tienes una asignación')

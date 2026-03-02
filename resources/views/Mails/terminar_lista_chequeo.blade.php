@@ -18,7 +18,7 @@
                                     <table class="main" width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; border-radius: 3px; background-color: #fff; margin: 0; border: 1px solid #e9e9e9;" bgcolor="#fff">
                                         <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;text-align:center; box-sizing: border-box; font-size: 14px; margin: 0;">
                                             <td class="alert alert-warning" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 16px; vertical-align: top; color: #fff; font-weight: 500; text-align:center;  border-radius: 3px 3px 0 0; background-color: #FFF; margin: 0; padding: 20px;" align="center" bgcolor="#71b6f9" valign="top">
-                                                <img src="{{ URL::asset('/vertical/assets/images/logo_new_2023.png') }}" height="70">    
+                                                <img src="https://apptiva.westquimica.com/vertical/assets/images/logo_new_2023.png" height="70">    
                                             </td>
                                         </tr>
                                         <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -36,7 +36,7 @@
                                                     </tr>
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                            <p>Se ha realizado una la lista de chequeo de <b>{{ $nombre }}</b> con resultado final de <b>{{ $resultado  }}%</b>, se generaron <b>{{ $cantidadPlanAccion }}</b> plan de acción y fue evaluada por <b>{{ $usuarioNombre }}</b>.</p>
+                                                            <p>Se ha realizado una la lista de chequeo de <b>{{ $nombre }}</b> con resultado final de <b>{{ $resultado  }}%</b> <!--, se generaron <b>{{ $cantidadPlanAccion }}</b> plan de acción--> y fue evaluada por <b>{{ $usuarioNombre }}</b>.</p>
                                                         </td>
                                                     </tr>
 

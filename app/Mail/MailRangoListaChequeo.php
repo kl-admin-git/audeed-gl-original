@@ -49,10 +49,10 @@ class MailRangoListaChequeo extends Mailable
         $this->idListaChequeo = $this->listaDeChequeo->id;
 
         $address = 'audiid@audiid.co';
-        $name = "Audiid";
+        $name = "Apptiva";
         return $this
             ->from($address, $name)
-            ->subject('Rangos no permitidos en lista de chequeo')
+            ->subject('Respuestas fuera de parámetros en lista '. $this->nombre)
             ->view('Mails.rango_lista_chequeo');
     }
 
