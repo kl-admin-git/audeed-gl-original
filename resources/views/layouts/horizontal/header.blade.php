@@ -51,7 +51,7 @@
                                     <a class="dropdown-item" href="#"><img src="{{ URL::asset('horizontal/assets/images/flags/russia_flag.jpg') }}" alt="" height="16"/><span> {{ trans('messages.russian') }} </span></a>
                                 </div>
                             </li> --}}
-                            <!-- notification-->
+                            <!-- notification
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
@@ -59,36 +59,36 @@
                                     <span class="badge badge-danger noti-icon-badge">3</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
-                                    <!-- item-->
+                                    
                                     <div class="dropdown-item noti-title">
                                         <h5>Notificación (3)</h5>
                                     </div>
 
-                                    <!-- item-->
+                                    
                                     <a href="javascript:void(0);" class="dropdown-item notify-item active">
                                         <div class="notify-icon bg-success"><i class="mdi mdi-oil-temperature"></i></div>
                                         <p class="notify-details"><b>Temperatura alta</b><small class="text-muted">Un colaborador presenta temperatura alta.</small></p>
                                     </a>
 
-                                    <!-- item-->
+                                    
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-warning"><i class="mdi mdi-home"></i></div>
                                         <p class="notify-details"><b>Colaborador en riesgo</b><small class="text-muted">Uno de tus colaboradores en riesgo, no esta en casa.</small></p>
                                     </a>
 
-                                    <!-- item-->
+                                    
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-info"><i class="mdi mdi-message-alert"></i></div>
                                         <p class="notify-details"><b>Cumplimiento crítico</b><small class="text-muted">Una de las categorías del protocolo de bioseguridad no se esta cumpliendo.</small></p>
                                     </a>
 
-                                    <!-- All-->
+                                   
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         Ver todo
                                     </a>
 
                                 </div>
-                            </li>
+                            </li>-->
                             <!-- User-->
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"

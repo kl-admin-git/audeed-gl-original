@@ -35,7 +35,7 @@ class MailFinalizarListaChequeo extends Mailable
         $nombreResultado = $this->NombreResultadoFinalAuditoriaEjecucion($this->listaDeChequeo->id);
         $cantidadPlanAccion = $this->CantidadPlanAccionEjecutada($this->listaDeChequeo->id);
         $usuarioNombre = $this->listaDeChequeo->NOMBRE_USUARIO;
-
+        
         $resultado = 0;
         foreach ($nombreResultado as $key => $item) 
         {
@@ -84,7 +84,7 @@ class MailFinalizarListaChequeo extends Mailable
         LEFT JOIN categoria cat ON cat.id=lcer.categoria_id
         LEFT JOIN respuesta res ON res.id=lcer.respuesta_id
         LEFT JOIN pregunta pre ON pre.id=lcer.pregunta_id
-        LEFT JOIN plan_accion pa ON pa.respuesta_id=lcer.respuesta_id
+        JOIN plan_accion pa ON pa.respuesta_id=lcer.respuesta_id
         -- INNER JOIN plan_accion_automatico paa ON paa.plan_accion_id=pa.id
         WHERE lce.id=:idEjecutada
         GROUP BY cat.id, pre.id"),['idEjecutada' => $idEjecutada]);

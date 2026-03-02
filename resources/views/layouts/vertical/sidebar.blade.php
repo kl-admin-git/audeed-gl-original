@@ -77,7 +77,7 @@
     <ul class="list-inline float-right mb-0">
         @if ($perfil->id == 1)
         
-            <!-- notification-->
+            <!-- notification
             <li class="list-inline-item dropdown notification-list" id="dashboard-tour-1">
                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                 aria-haspopup="false" aria-expanded="false">
@@ -85,13 +85,13 @@
                     <span class="badge badge-danger noti-icon-badge">{{ COUNT($consultaPlanAccion) }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
-                    <!-- item-->
+                   
                     <div class="dropdown-item noti-title">
                         <h5>Notificación ({{ COUNT($consultaPlanAccion) }})</h5>
                     </div>
 
                     @foreach ($consultaPlanAccion as $itemNotificacion)
-                        <!-- item-->
+                       
                         @if($itemNotificacion->plan_accion_id != null)
                         <a href="{{ route('Plan_action_Filter',$itemNotificacion->plan_accion_id)}}" class="dropdown-item notify-item active">
                             <div class="notify-icon bg-danger"><i class="mdi mdi-alert-circle"></i></div>
@@ -100,13 +100,13 @@
                         @endif
                     @endforeach
 
-                    <!-- All-->
+                   
                     <a href="{{ route('Plan_action') }}" class="dropdown-item notify-item">
                         Ver todo
                     </a>
 
                 </div>
-            </li>
+            </li>-->
         @endif
         
         <!-- User-->
