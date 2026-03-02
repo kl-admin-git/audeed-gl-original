@@ -1679,8 +1679,9 @@ class InformesController extends Controller
 
     private function SimularDatosPlanillaTitulacion($paginacion = null, $filtros = null)
     {
+        $id_auditoria = 153;
         $data_auditoria = \DB::table('lista_chequeo')
-        ->where('id', '=', 149)
+        ->where('id', '=', $id_auditoria)
         ->first();
 
         // Configuración de paginación
@@ -1693,7 +1694,7 @@ class InformesController extends Controller
             SELECT COUNT(DISTINCT lce.id) as total
             FROM lista_chequeo_ejecutadas lce 
             INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
-            WHERE lc.id = 149
+            WHERE lc.id = {$id_auditoria}
         "));
         
         $totalRegistros = $totalRegistrosQuery[0]->total ?? 0;
@@ -1704,7 +1705,7 @@ class InformesController extends Controller
             SELECT DISTINCT lce.id
             FROM lista_chequeo_ejecutadas lce 
             INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
-            WHERE lc.id = 149
+            WHERE lc.id = {$id_auditoria}
             ORDER BY lce.id ASC
             LIMIT {$registrosPorPagina} OFFSET {$offset}
         "));
@@ -1754,7 +1755,7 @@ class InformesController extends Controller
             INNER JOIN categoria_etiquetas cet ON cat.id_etiqueta = cet.id
             INNER JOIN usuario u ON lce.usuario_id = u.id
             LEFT JOIN usuario us ON lce.revisado = us.id
-            WHERE lc.id = 149 AND lce.id IN ({$idsString})
+            WHERE lc.id = {$id_auditoria} AND lce.id IN ({$idsString})
             ORDER BY lce.id ASC, p.id ASC
         "));
 
