@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumb')
-<h3 class="page-title">Centro de control</h1>
+<h3 class="page-title">Cumplimiento</h1>
 @endsection
 
 @section('section')
@@ -93,13 +93,16 @@
         </div>
     </div>
     <div class="col-md-6 col-lg-6 col-xl-3">
+        <!--
         <div class="mini-stat clearfix bg-white">
             <span class="mini-stat-icon bg-teal mr-0 float-right"><i class="mdi mdi-file-check"></i></span>
+            
             <div class="mini-stat-info">
                 <span class="counter text-teal texto_plan_accion">0</span>
                 Hallazgos
-            </div>
+            </div>            
         </div>
+        -->
     </div>
 </div>
 {{-- FIN SECCIÓN 2 --}}
@@ -121,7 +124,7 @@
                                         <th>Fecha</th>
                                         <th>Entidad evaluada</th>
                                         <th>Nombre</th>
-                                        <th>Hallazgos</th>
+                                        <!--<th>Hallazgos</th>-->
                                         <th>Resultado final</th>
                                     </tr>
                                 </thead>

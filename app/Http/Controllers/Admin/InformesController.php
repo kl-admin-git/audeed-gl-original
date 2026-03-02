@@ -1730,7 +1730,7 @@ class InformesController extends Controller
         }
 
         // Convertir array de IDs a string para la consulta
-        $idsString = implode(',', $listaEjectIds);
+        $idsString = implode(',', $listaEjectIds);        
 
         // Ahora obtener todos los datos de esas listas ejecutadas
         $datosQuery = \DB::select(\DB::raw("
@@ -1752,12 +1752,12 @@ class InformesController extends Controller
             INNER JOIN lista_chequeo_ejec_respuestas lcer ON lce.id = lcer.lista_chequeo_ejec_id
             INNER JOIN pregunta p ON lcer.pregunta_id = p.id
             INNER JOIN categoria cat ON p.categoria_id = cat.id
-            INNER JOIN categoria_etiquetas cet ON cat.id_etiqueta = cet.id
+            LEFT JOIN categoria_etiquetas cet ON cat.id_etiqueta = cet.id
             INNER JOIN usuario u ON lce.usuario_id = u.id
             LEFT JOIN usuario us ON lce.revisado = us.id
             WHERE lc.id = {$id_auditoria} AND lce.id IN ({$idsString})
             ORDER BY lce.id ASC, p.id ASC
-        "));
+        "));  
 
         $registrosAgrupados = [];
         $preguntasUnicas = [];

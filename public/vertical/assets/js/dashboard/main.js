@@ -68,13 +68,13 @@ function IniciarVista(clickBuscar=false)
                         let stringTablaGeneral = '';
                         $.each(data.datos.datosSeccionDos, function (indexTabla, itemTabla) 
                         { 
+                            //<td>${itemTabla.HALLAZGOS}</td>
                              stringTablaGeneral += `<tr>
                                                         <td>${itemTabla.LISTA_DE_CHEQUEO}</td>
                                                         <td>${itemTabla.EMPRESA}</td>
                                                         <td>${itemTabla.FECHA_REALIZACION}</td>
                                                         <td>${itemTabla.ENTIDAD}</td>
-                                                        <td>${itemTabla.EVALUADO}</td>
-                                                        <td>${itemTabla.HALLAZGOS}</td>
+                                                        <td>${itemTabla.EVALUADO}</td>                                                        
                                                         <td><span idListaEjecutada="${itemTabla.ID_LISTA_EJECUTADA}" onclick="OnClickRedireccionDetalle(this);" style="cursor:pointer;color:blue;">${itemTabla.ResultadoFinal}</span></td>
                                                     </tr>`;
                         });

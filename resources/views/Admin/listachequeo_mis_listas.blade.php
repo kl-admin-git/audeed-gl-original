@@ -32,7 +32,7 @@
                         </div>
                         @if (auth()->user()->perfil_id == 1) {{-- ADMINISTRADOR --}}
                             <div class="contenedorBotonesCrear">
-                                <a href="{{ route('List_Model') }}" class="btn btn-primary waves-effect waves-light" id="tour-modelo">Nuevo desde modelo</a>
+                                <!--<a href="{{ route('List_Model') }}" class="btn btn-primary waves-effect waves-light" id="tour-modelo">Nuevo desde modelo</a>-->
                                 <button type="button" class="btn btn-primary waves-effect waves-light crearDesdeCero" id="tour-nuevo">Nuevo desde cero</button>
                             </div>
                         @endif

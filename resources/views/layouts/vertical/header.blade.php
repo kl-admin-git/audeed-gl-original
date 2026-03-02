@@ -71,11 +71,11 @@
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect" id="menu-2"><i class="mdi mdi-comment-check"></i> <span>{{ trans('menumessages.menut') }}<span class="pull-right"><i class="mdi mdi-chevron-right"></i></span></span> </a>
                 <ul class="list-unstyled">
-                    <li><a href="{{ route('List_Model') }}">{{ trans('menumessages.submenutf') }}</a></li>
+                    <!--<li><a href="{{ route('List_Model') }}">{{ trans('menumessages.submenutf') }}</a></li>-->
                     <li><a href="{{ route('List_MyList') }}">{{ trans('menumessages.submenuts') }}</a></li>
                     <li><a href="{{ route('List_MyList_Excecuted') }}">Ejecutadas</a></li>
-                    <li><a href="{{ route('Plan_action') }}">Plan de acción automático</a></li>
-                    <li><a href="{{ route('Plan_action_manual') }}">Plan de acción manual</a></li>
+                    <!--<li><a href="{{ route('Plan_action') }}">Plan de acción automático</a></li>
+                    <li><a href="{{ route('Plan_action_manual') }}">Plan de acción manual</a></li>-->
                 </ul>
             </li>
 
@@ -83,7 +83,7 @@
                 <a href="javascript:void(0);" class="waves-effect" id="menu-3"><i class="mdi mdi-format-list-numbers"></i> <span>Reportes<span class="pull-right"><i class="mdi mdi-chevron-right"></i></span></span> </a>
                 <ul class="list-unstyled">                    
                     <li><a href="{{ route('Reports_Excecuted') }}">Ejecutadas</a></li>
-                    <li><a href="{{ route('plan_accion_hallazgos') }}">Hallazgos plan acción</a></li>
+                    <!--<li><a href="{{ route('plan_accion_hallazgos') }}">Hallazgos plan acción</a></li>-->
                     @if ($perfilExacto == 1)
                     <li><a href="{{ route('Dasboard_Ruta') }}">Cumplimiento</a></li>
                     @endif

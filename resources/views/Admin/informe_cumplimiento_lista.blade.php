@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumb')
-    <h3 class="page-title">Centro de control</h1>
+    <h3 class="page-title">Cumplimiento</h1>
     @endsection
 
     @section('section')
