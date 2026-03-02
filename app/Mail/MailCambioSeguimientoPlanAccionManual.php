@@ -24,7 +24,7 @@ class MailCambioSeguimientoPlanAccionManual extends Mailable
         $this->nombreUsuario = $usuario->nombre_completo;
 
         $address = 'audiid@audiid.co';
-        $name = "Audiid";
+        $name = "Apptiva";
         return $this
         ->from($address, $name)
         ->subject('Cambio en seguimiento (plan acción)')

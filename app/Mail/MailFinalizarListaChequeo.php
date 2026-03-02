@@ -49,7 +49,7 @@ class MailFinalizarListaChequeo extends Mailable
         $this->idListaChequeo = $this->listaDeChequeo->id;
 
         $address = 'audiid@audiid.co';
-        $name = "Audiid";
+        $name = "Apptiva";
         return $this
         ->from($address, $name)
         ->subject('Finalización de lista de chequeo')

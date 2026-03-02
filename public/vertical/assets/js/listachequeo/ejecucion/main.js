@@ -2152,7 +2152,17 @@ function OnClickFinalizarListaChequeo() {
         const idPregunta = respuesta.parents().eq(4).attr('idPregunta');
         
         if (tiporespuesta == 15) {
-            if (Number(respuestaAbierta) < valormin || Number(respuestaAbierta) > valormax) {
+            const respuesta = Number(respuestaAbierta);
+            let min = Number(valormin);
+            let max = Number(valormax);
+
+            // Asegurar orden correcto
+            if (min > max) {
+                [min, max] = [max, min];
+            }
+
+            // Validar rango
+            if (respuesta < min || respuesta > max) {
                 respuestasRango.push(idPregunta);
             }
         }

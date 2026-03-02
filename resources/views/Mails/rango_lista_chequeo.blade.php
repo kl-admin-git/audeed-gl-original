@@ -32,7 +32,8 @@
                                             <td class="alert alert-warning"
                                                 style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 16px; vertical-align: top; color: #fff; font-weight: 500; text-align:center;  border-radius: 3px 3px 0 0; background-color: #FFF; margin: 0; padding: 20px;"
                                                 align="center" bgcolor="#71b6f9" valign="top">
-                                                <img src="{{ URL::asset('/vertical/assets/images/logo_new_2023.png') }}"
+                                                <img src="https://apptiva.westquimica.com/vertical/assets/images/logo_new_2023.png
+                                                "
                                                     height="70">
                                             </td>
                                         </tr>
@@ -95,9 +96,18 @@
                                                                         <strong>Pregunta:</strong> {{ $item->pregunta }}
                                                                     </div>
 
+                                                                    @php
+                                                                        $min = (float) $item->valor_min;
+                                                                        $max = (float) $item->valor_max;
+
+                                                                        if ($min > $max) {
+                                                                            [$min, $max] = [$max, $min];
+                                                                        }
+                                                                    @endphp
+
                                                                     <div style="font-size:14px; margin-bottom:6px;">
-                                                                        <strong>Rango:</strong> {{ $item->valor_min }} -
-                                                                        {{ $item->valor_max }}
+                                                                        <strong>Rango:</strong> {{ $min }} -
+                                                                        {{ $max }}
                                                                     </div>
 
                                                                     <div

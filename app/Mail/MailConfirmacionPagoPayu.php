@@ -33,7 +33,7 @@ class MailConfirmacionPagoPayu extends Mailable
     public function build()
     {
         $address = 'audiid@audiid.co';
-        $name = "Audiid";
+        $name = "Apptiva";
         return $this
         ->from($address, $name)
         ->subject('Confirmación Suscripción')
