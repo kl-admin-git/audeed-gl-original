@@ -198,13 +198,14 @@ class ListaChequeoMisListasController extends Controller
     }
 
     public function CrearListaChequeoMia(Request $request)
-    {
+    {        
         $nombreMiLista = $request->get('nombre');
         $entidad_evaluada = $request->get('entidad_evaluada');
         $publicacion_destino = $request->get('publicacion_destino');
         $estadoInicial = $request->get('estadoInicial');
         $checkAutomatico = $request->get('checkAutomatico');
-        
+        $manejaPonderado = $request->get('maneja_ponderado');
+
         if($checkAutomatico == 'true')
             $checkAutomatico = 1;
         else
@@ -217,7 +218,8 @@ class ListaChequeoMisListasController extends Controller
             'usuario_id' => auth()->user()->id,
             // 'modelo_id' => 0, // NO MODELO
             'estado'=> $estadoInicial,
-            'tipo_ponderados' => $checkAutomatico
+            'tipo_ponderados' => $checkAutomatico,
+            'maneja_ponderado' => $manejaPonderado
         ];
 
         $listaChequeo = new $this->listaChequeos;
@@ -1191,8 +1193,8 @@ class ListaChequeoMisListasController extends Controller
 
                             DB::table('rangos_pregunta')->insert([
                                 'id_pregunta' => $idPregunta,
-                                'valor_min'    => $itemPersonalizado->valorMin,
-                                'valor_max' => $itemPersonalizado->valorMax,
+                                'valor_min'    => $itemPersonalizado->valorMin == '' ? null : $itemPersonalizado->valorMin,
+                                'valor_max' => $itemPersonalizado->valorMax == '' ? null : $itemPersonalizado->valorMax,
                             ]);
                         }
                     }

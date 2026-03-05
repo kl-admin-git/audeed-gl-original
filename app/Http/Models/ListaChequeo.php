@@ -24,5 +24,6 @@ class ListaChequeo extends Model
         'favorita',
         'espacio_mb',
         'modelo_id',
+        'maneja_ponderado'
     ];
 }

@@ -264,7 +264,7 @@ $(document).ready(function () {
                                 let valorPersonalizadoMin = $(itemHijo).find('.valorPersonalizadoMin').val();
                                 let valorPersonalizadoMax = $(itemHijo).find('.valorPersonalizadoMax').val();
 
-                                if (valorPersonalizadoMin == "" || valorPersonalizadoMax == "") {
+                                if (valorPersonalizadoMin == "" && valorPersonalizadoMax == "") {
                                     vaciosTexto = true;
                                 }else{                                    
                                     steps.stepsEnviar.stepTres.personalizadas.push(
@@ -988,11 +988,11 @@ function ComponentePersonalizacion(respuestas, tipoRespuesta = 0) {
         stringRespuestas =`<div class="row mt-1">
                                 <label class="col-lg-5 col-form-label" style="text-align:end;">Valor Minimo</label>
                                 <div class="col-lg-3">
-                                    <input type="text" class="form-control valorPersonalizadoMax input-number" value=""/>
+                                    <input type="text" class="form-control valorPersonalizadoMin input-number" value=""/>
                                 </div>
                                 <label class="col-lg-5 col-form-label" style="text-align:end;">Valor Maximo</label>
                                 <div class="col-lg-3">
-                                    <input type="text" class="form-control valorPersonalizadoMin input-number"/>
+                                    <input type="text" class="form-control valorPersonalizadoMax input-number"/>
                                 </div>
                             </div>`;
 
