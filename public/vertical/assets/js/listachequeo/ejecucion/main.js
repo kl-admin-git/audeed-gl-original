@@ -618,15 +618,15 @@ function ComponentePregunta(idPregunta, pregunta, respuestas, opcionesRespuesta,
                         stringClase = stringClase = 'respuestaSeleccion';
                     else
                         stringClase = '';
-                    
+
                     stringRespuestas += `<div class="m-l-5 m-r-5">
                                             <div class="form-group">
                                                 <div class="respuesta bg-gray ${stringClase}" valorMin="${objetoPregunta.valor_min}" valorMax="${objetoPregunta.valor_max}" tipoRespuesta="${tipoRespuestaBk}" respuestaAbierta="${item.rta_abierta}" onclick="OnClickRespuesta(this);" idRespuesta="${item.id}">
                                                    Seleccionar
                                                 </div>
                                             </div>
-                                        </div>`; 
-                                      
+                                        </div>`;
+
                 }
                 break;
 
@@ -778,7 +778,7 @@ function OnClickCategoria(control) {
 var objetoEnviarGlobal = null;
 var controlGlobal = null;
 function OnClickRespuesta(control) {
-    if ($(control).hasClass('respuestaSeleccion') && ($(control).attr('tipoRespuesta') != 3 && $(control).attr('tipoRespuesta') != 5 && $(control).attr('tipoRespuesta') != 6 && $(control).attr('tipoRespuesta') != 7 && $(control).attr('tipoRespuesta') != 8 && $(control).attr('tipoRespuesta') != 9 && $(control).attr('tipoRespuesta') != 10  && $(control).attr('tipoRespuesta') != 11 && $(control).attr('tipoRespuesta') != 13 && $(control).attr('tipoRespuesta') != 14 && $(control).attr('tipoRespuesta') != 15))
+    if ($(control).hasClass('respuestaSeleccion') && ($(control).attr('tipoRespuesta') != 3 && $(control).attr('tipoRespuesta') != 5 && $(control).attr('tipoRespuesta') != 6 && $(control).attr('tipoRespuesta') != 7 && $(control).attr('tipoRespuesta') != 8 && $(control).attr('tipoRespuesta') != 9 && $(control).attr('tipoRespuesta') != 10 && $(control).attr('tipoRespuesta') != 11 && $(control).attr('tipoRespuesta') != 13 && $(control).attr('tipoRespuesta') != 14 && $(control).attr('tipoRespuesta') != 15))
         return;
 
     let contenedorPregunta = $(control).parents().eq(4);
@@ -813,7 +813,7 @@ function OnClickRespuesta(control) {
     $('#respuestaSelectLotes').next('.select2-container').hide();
     $('#respuestaSelectAreas').next('.select2-container').hide();
     $('#respuestaSelectMotivos').next('.select2-container').hide();
-     $('#respuestaNum').hide();
+    $('#respuestaNum').hide();
 
     $('#popUpRespuestaFecha .modal-title').text('Guardar respuesta');
     $('#popUpRespuestaFecha .cancelarPopUpRespuestaFecha').text('Cancelar');
@@ -885,7 +885,7 @@ function OnClickRespuesta(control) {
         $('#respuestaSelectLotes').next('.select2-container').hide();
         $('#respuestaSelectAreas').next('.select2-container').hide();
         $('#respuestaSelectMotivos').next('.select2-container').hide();
-         $('#respuestaNum').hide();
+        $('#respuestaNum').hide();
 
         $('#respuestaSelectNumerico').val(respuestaAbierta).trigger('change');
 
@@ -910,7 +910,7 @@ function OnClickRespuesta(control) {
         $('#respuestaSelectLotes').next('.select2-container').hide();
         $('#respuestaSelectAreas').next('.select2-container').hide();
         $('#respuestaSelectMotivos').next('.select2-container').hide();
-         $('#respuestaNum').hide();
+        $('#respuestaNum').hide();
 
         const texto = respuestaAbierta.split('-')[0].trim();
         let resultado = referencias.find(ref => ref.split('-')[0].trim() === texto)
@@ -935,7 +935,7 @@ function OnClickRespuesta(control) {
         $('#respuestaSelectLotes').next('.select2-container').hide();
         $('#respuestaSelectAreas').next('.select2-container').hide();
         $('#respuestaSelectMotivos').next('.select2-container').hide();
-         $('#respuestaNum').hide();
+        $('#respuestaNum').hide();
 
         const texto = respuestaAbierta.split('-')[1].trim();
         let resultado = productos.find(ref => ref.split('-')[1].trim() === texto)
@@ -960,7 +960,7 @@ function OnClickRespuesta(control) {
         $('#respuestaSelectEquipos').next('.select2-container').show();
         $('#respuestaSelectAreas').next('.select2-container').hide();
         $('#respuestaSelectMotivos').next('.select2-container').hide();
-         $('#respuestaNum').hide();
+        $('#respuestaNum').hide();
 
         $('#respuestaSelectEquipos').val(respuestaAbierta).trigger('change');
 
@@ -985,7 +985,7 @@ function OnClickRespuesta(control) {
         $('#respuestaSelectLotes').next('.select2-container').show();
         $('#respuestaSelectAreas').next('.select2-container').hide();
         $('#respuestaSelectMotivos').next('.select2-container').hide();
-         $('#respuestaNum').hide();
+        $('#respuestaNum').hide();
 
         $('#respuestaSelectLotes').val(respuestaAbierta).trigger('change');
 
@@ -1038,8 +1038,8 @@ function OnClickRespuesta(control) {
         if (respuestaAbierta != 'null')
             $('#respuestaNum').val(respuestaAbierta);
         else
-            $('#respuestaNum').val('');  
-                
+            $('#respuestaNum').val('');
+
 
         if ($(control).hasClass('respuestaSeleccionNoPermitido')) {
             $('.guardarRespuestaFecha').hide();
@@ -2104,7 +2104,7 @@ function OnClickFinalizarListaChequeo() {
     let cantidadTotal = $('.contenedorCategorias').find('.contenedorRespuestas').length;
     let cantidadContestadas = $('.contenedorCategorias').find('.respuestaSeleccion').length;
 
-    let velocidad = 500;    
+    let velocidad = 500;
 
     if (cantidadContestadas == 0) {
         $("html, body").animate({
@@ -2114,7 +2114,7 @@ function OnClickFinalizarListaChequeo() {
 
     let scroll = false;
     $.each($('.contenedorCategorias').find('.contenedorRespuestas'), function (indexInArray, item) {
-       
+
         let respondio = $(item).find('.respuesta').hasClass('respuestaSeleccion');
         if (!respondio && !scroll) {
             //console.log($(item));
@@ -2148,22 +2148,42 @@ function OnClickFinalizarListaChequeo() {
         const valormin = respuesta.attr('valormin');
         const valormax = respuesta.attr('valormax');
         const respuestaAbierta = respuesta.attr('respuestaabierta');
-        const tiporespuesta = respuesta.attr('tiporespuesta');        
+        const tiporespuesta = respuesta.attr('tiporespuesta');
         const idPregunta = respuesta.parents().eq(4).attr('idPregunta');
-        
+
         if (tiporespuesta == 15) {
+
             const respuesta = Number(respuestaAbierta);
-            let min = Number(valormin);
-            let max = Number(valormax);
+            let min = valormin !== null && valormin !== "" ? Number(valormin) : null;
+            let max = valormax !== null && valormax !== "" ? Number(valormax) : null;
 
-            // Asegurar orden correcto
-            if (min > max) {
-                [min, max] = [max, min];
+            // Si existen ambos
+            if (min !== null && max !== null) {
+
+                if (min > max) {
+                    [min, max] = [max, min];
+                }
+
+                if (respuesta < min || respuesta > max) {
+                    respuestasRango.push(idPregunta);
+                }
+
             }
+            // Solo mínimo
+            else if (min !== null) {
 
-            // Validar rango
-            if (respuesta < min || respuesta > max) {
-                respuestasRango.push(idPregunta);
+                if (respuesta < min) {
+                    respuestasRango.push(idPregunta);
+                }
+
+            }
+            // Solo máximo
+            else if (max !== null) {
+
+                if (respuesta > max) {
+                    respuestasRango.push(idPregunta);
+                }
+
             }
         }
     });
@@ -2447,7 +2467,7 @@ function OnClickGuardarRespuestaTiempo() {
                     $(controlGlobal).attr('respuestaAbierta', $('#respuestaTiempoText').val());
                     $('#popUpRespuestaTiempo').modal('hide');
                     toastr.success(data.mensaje);
-                    
+
                     break;
 
                 case 406:

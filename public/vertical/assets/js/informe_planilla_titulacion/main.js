@@ -3,7 +3,7 @@ let totalpaginas = 0;
 let inicializacionPaginacion = false;
 let arrayFiltros = {};
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Select2
     $(".select2").select2({});
 
@@ -14,14 +14,34 @@ $(document).ready(function() {
         language: 'es'
     });
 
-    $('#btn-descargar-excel').on('click', function() {
+    let hoy = new Date();
+
+    // Primer día del mes
+    let primerDia = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+
+    // Último día del mes
+    let ultimoDia = new Date(hoy.getFullYear(), hoy.getMonth() + 1, 0);
+
+    function formatearFecha(fecha) {
+        let dia = ("0" + fecha.getDate()).slice(-2);
+        let mes = ("0" + (fecha.getMonth() + 1)).slice(-2);
+        let anio = fecha.getFullYear();
+        return anio + "-" + mes + "-" + dia; // formato 2026-03-01
+    }
+
+    $('#fecha_inicio').val(formatearFecha(primerDia));
+    $('#fecha_fin').val(formatearFecha(ultimoDia));
+
+
+    $('#btn-descargar-excel').on('click', function () {
         $('#descargar-excel-planAccion').submit();
     });
     IniciarVista();
 });
 
 function IniciarVista() {
-    arrayFiltros['filtro_realizacion'] = $('#datepicker-autoclose').val();
+    arrayFiltros['filtro_inicio_realizacion'] = $('#fecha_inicio').val();
+    arrayFiltros['filtro_fin_realizacion'] = $('#fecha_fin').val();
     arrayFiltros['filtro_lista_chequeo'] = $('.listaSearch').val();
     arrayFiltros['filtro_evaluado'] = $('.evaluadoSearch').val();
     arrayFiltros['filtro_evaluador'] = $('.evaluadorSearch').val();
@@ -37,19 +57,19 @@ function IniciarVista() {
         },
         cache: false,
         dataType: 'json',
-        beforeSend: function() {
+        beforeSend: function () {
             CargandoMostrar();
         },
-        success: function(data) {
+        success: function (data) {
             CargandoNoMostrar();
             switch (data.responseCode) {
                 case 202:
                     totalpaginas = data.totalPaginas || 1;
-                    
+
                     if (!inicializacionPaginacion && totalpaginas > 0) {
                         InicializacionPaginacion($('.pagination'), totalpaginas, paginacion);
                     }
-                    
+
                     if (totalpaginas > 0) {
                         _navPage($('.pagination'), totalpaginas, paginacion - 1, 5);
                     }
@@ -64,15 +84,15 @@ function IniciarVista() {
                     if (registros.length === 0) {
                         tbody.html('<tr id="no-data-row"><td colspan="100%" class="text-center p-3">No hay datos disponibles actualmente</td></tr>');
                     } else {
-                        registros.forEach(function(registro) {
+                        registros.forEach(function (registro) {
                             let tr = $('<tr>');
                             tr.append($('<td class="text-center" style="vertical-align: middle;">').text(registro.fecha));
                             tr.append($('<td class="text-center" style="vertical-align: middle;">').text(registro.hora));
 
                             // Iterar categorías -> etiquetas -> preguntas para mantener orden de columnas
-                            categorias.forEach(function(cat) {
-                                cat.etiquetas.forEach(function(etiq) {
-                                    etiq.preguntas.forEach(function(preg) {
+                            categorias.forEach(function (cat) {
+                                cat.etiquetas.forEach(function (etiq) {
+                                    etiq.preguntas.forEach(function (preg) {
                                         let respuesta = registro.respuestas[preg.id] || '';
                                         tr.append($('<td class="text-center" style="vertical-align: middle;">').text(respuesta));
                                     });
@@ -81,7 +101,7 @@ function IniciarVista() {
 
                             tr.append($('<td class="text-center" style="vertical-align: middle;">').text(registro.firma_operario));
                             tr.append($('<td class="text-center" style="vertical-align: middle;">').text(registro.firma_lider));
-                            
+
                             tbody.append(tr);
                         });
                     }
@@ -95,7 +115,7 @@ function IniciarVista() {
                     break;
             }
         },
-        error: function(data) {
+        error: function (data) {
             CargandoNoMostrar();
             console.error('Error al cargar los datos');
         }
@@ -133,7 +153,7 @@ function InicializacionPaginacion(baseElement, pages, pageShow) {
 function _initNav(baseElement, pageShow, pages) {
     // Limpiar páginas existentes
     $('.nav-pages', baseElement).empty();
-    
+
     // Crear páginas
     for (i = 1; i < pages + 1; i++) {
         $((i == 1 ? '<li class="active">' : '<li>') + (i) + '</li>').appendTo('.nav-pages', baseElement).css('min-width', '4em');
@@ -146,7 +166,7 @@ function _initNav(baseElement, pageShow, pages) {
     $('.nav-pages', baseElement).css('margin-left', bw + 'px');
 
     // Inicializar eventos
-    baseElement.on('click', '.nav-pages li, .nav-btn', function(e) {
+    baseElement.on('click', '.nav-pages li, .nav-btn', function (e) {
         if ($(e.target).is('.nav-btn')) {
             var toPage;
             if ($(this).hasClass('prev')) {

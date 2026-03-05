@@ -306,6 +306,7 @@ function OnClickCrearNuevaLista() {
             publicacion_destino: $(".estadoInicialPopUp ").val(),
             estadoInicial: $(".estadoInicialPopUp").val(),
             checkAutomatico: $("#checkBoxAutomatico").is(":checked"),
+            maneja_ponderado: $('input[name="manejar_ponderados"]:checked').val()
         };
 
         $.ajax({

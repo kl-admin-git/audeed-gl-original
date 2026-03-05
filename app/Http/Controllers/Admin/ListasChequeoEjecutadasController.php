@@ -611,7 +611,13 @@ class ListasChequeoEjecutadasController extends Controller
         ->where('id',  $idListaEjecutada)
         ->first()->revisado;
 
-        return view('Admin.listachequeo_detalle',compact('seccionUno','seccionDos','seccionTres','seccionCuatro','seccionQuinta', 'observacion_general', 'idListaEjecutada', 'revisado'));
+        $maneja_ponderado = $this->listaEjecutada
+        ->select('maneja_ponderado')
+        ->where('lista_chequeo_ejecutadas.id',  $idListaEjecutada)
+        ->join('lista_chequeo', 'lista_chequeo.id', 'lista_chequeo_ejecutadas.lista_chequeo_id')
+        ->first()->maneja_ponderado;
+
+        return view('Admin.listachequeo_detalle',compact('seccionUno','seccionDos','seccionTres','seccionCuatro','seccionQuinta', 'observacion_general', 'idListaEjecutada', 'revisado', 'maneja_ponderado'));
     }
 
     public function FuncionConsultaEncabezado($idListaEjecutada)
