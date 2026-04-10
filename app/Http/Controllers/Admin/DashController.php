@@ -140,8 +140,9 @@ class DashController extends Controller
         //SECCIÓN 1
         switch (auth()->user()->perfil_id) {
             case 1: // ADMINISTRADOR
-                $listadoEstados = $listadoEstados->where('usu.id','=',auth()->user()->id);
-                $planDeAccionGenerados = $planDeAccionGenerados->where('usu.id','=',auth()->user()->id);
+                
+                $listadoEstados = $listadoEstados->where('empe.cuenta_principal_id','=',auth()->user()->cuenta_principal_id);
+                $planDeAccionGenerados = $planDeAccionGenerados->where('empe.cuenta_principal_id','=',auth()->user()->cuenta_principal_id);
                 break;
 
             case 2: // COLABORADOR
@@ -204,8 +205,8 @@ class DashController extends Controller
 
         switch (auth()->user()->perfil_id) {
             case 1: // ADMINISTRADOR
-                $completarQuery = ' AND usu.id = :idUsuario';
-                $valores['idUsuario'] = auth()->user()->id;
+                $completarQuery = ' AND empe.cuenta_principal_id = :idCuentaPrincipal';
+                $valores['idCuentaPrincipal'] = auth()->user()->cuenta_principal_id;
                 break;
 
             case 2: // COLABORADOR
@@ -260,7 +261,7 @@ class DashController extends Controller
             WHEN lc.entidad_evaluada=5 THEN (SELECT eqs.nombre FROM equipos eqs WHERE eqs.id=lce.evaluado_id)
             ELSE 'Error'
         END) AS EMPRESA,
-        DATE_FORMAT(lce.fecha_realizacion,'%d de %M %Y') AS FECHA_REALIZACION,
+        DATE_FORMAT(lce.fecha_realizacion,'%d de %M %Y %h:%i:%s %p') AS FECHA_REALIZACION,
         (CASE
             WHEN lc.entidad_evaluada = 1 THEN 'EMPRESA'
             WHEN lc.entidad_evaluada = 2 THEN 'ESTABLECIMIENTO'

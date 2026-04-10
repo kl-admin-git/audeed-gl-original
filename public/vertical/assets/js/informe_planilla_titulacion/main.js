@@ -8,7 +8,7 @@ $(document).ready(function () {
     $(".select2").select2({});
 
     // Date Picker
-    $('#datepicker-autoclose').datepicker({
+    $('.datepicker-autoclose').datepicker({
         autoclose: true,
         format: 'yyyy-mm-dd',
         language: 'es'
@@ -134,7 +134,7 @@ function OnClickBuscarBoton() {
 }
 
 function OnClickRestablecerBusqueda() {
-    let url = window.location.origin + '/listachequeo/informe_planilla_titulacion';
+    let url = window.location.origin + '/informes/planilla_titulacion';
     window.location.href = url;
 }
 

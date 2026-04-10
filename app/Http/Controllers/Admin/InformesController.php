@@ -359,7 +359,7 @@ class InformesController extends Controller
             ->select(
                 'lista_chequeo_ejecutadas.id AS ID_EJECUTADA',
                 'lc.nombre AS lista_chequeo',
-                \DB::raw('DATE_FORMAT(lista_chequeo_ejecutadas.fecha_realizacion,"%d de %M %Y") AS FECHA_REALIZACION'),
+                \DB::raw('DATE_FORMAT(lista_chequeo_ejecutadas.fecha_realizacion,"%d de %M %Y %h:%i:%s %p") AS FECHA_REALIZACION'),
                 'lista_chequeo_ejecutadas.latitud',
                 'lista_chequeo_ejecutadas.longitud',
                 \DB::raw('IF((CASE
@@ -1623,7 +1623,13 @@ class InformesController extends Controller
     {
         $datosPlanilla = $this->SimularDatosPlanillaTitulacion();
 
-        return view('Admin.informe_planilla_titulacion', compact('datosPlanilla'));
+        $listaChequeo = $this->FuncionParaTraerListasChequeoInformes();
+        $evaluados = $this->FuncionParaTraerEvaluadoInformes();
+        $evaluadores = $this->FuncionParaTraerEvaluadoresInformes();
+        $estados = $this->FuncionParaTraerEstadosInformes();
+        $entidadEvaluada = $this->FuncionParaTraerEntidadEvaluadaInformes();
+
+        return view('Admin.informe_planilla_titulacion', compact('datosPlanilla', 'listaChequeo', 'evaluados', 'evaluadores', 'estados', 'entidadEvaluada'));
     }
 
     public function GetDataInitPlanillaTitulacion(Request $request)
@@ -1717,8 +1723,8 @@ class InformesController extends Controller
         // Ahora obtener todos los datos de esas listas ejecutadas
         $datosQuery = \DB::select(\DB::raw("
             SELECT
-                DATE_FORMAT(lce.finished_at,'%d/%m/%Y') AS FECHA,
-                DATE_FORMAT(lce.finished_at,'%H:%i') AS HORA,
+                DATE_FORMAT(lce.fecha_realizacion,'%d/%m/%Y') AS FECHA,
+                DATE_FORMAT(lce.fecha_realizacion,'%H:%i') AS HORA,
                 p.id AS PREGUNTA_ID,
                 p.nombre AS PREGUNTA,
                 u.nombre_completo AS FIRMA_OPERARIO,

@@ -23,7 +23,7 @@
                                                 data-target="#collapseExample" aria-expanded="false"
                                                 aria-controls="collapseExample" id="buscar-tour">Buscar <i class="fa"
                                                     aria-hidden="true"></i></button>
-                                            <i class="mdi mdi-file-excel"></i>
+                                            <i class="mdi mdi-file-excel" id="btn-descargar-excel"></i>
                                             <form
                                                 action="{{ url('/listachequeo/informe_planilla_titulacion/descargar-excel') }}"
                                                 method="POST" style="display: none;" id="descargar-excel-planAccion">
@@ -40,7 +40,8 @@
                                                             <div class="form-group">
                                                                 <div>
                                                                     <div class="input-group">
-                                                                        <input type="text" class="form-control"
+                                                                        <input type="text"
+                                                                            class="form-control datepicker-autoclose"
                                                                             placeholder="fecha inicial de realización"
                                                                             id="fecha_inicio">
                                                                         <div class="input-group-append">
@@ -58,7 +59,8 @@
                                                             <div class="form-group">
                                                                 <div>
                                                                     <div class="input-group">
-                                                                        <input type="text" class="form-control"
+                                                                        <input type="text"
+                                                                            class="form-control datepicker-autoclose"
                                                                             placeholder="fecha final de realización"
                                                                             id="fecha_fin">
                                                                         <div class="input-group-append">
@@ -72,55 +74,78 @@
                                                             </div>
                                                         </div>
 
+
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group">
+                                                                <select
+                                                                    class="form-control select2 selectSearch listaSearch">
+                                                                    <option value="">Buscar por lista de chequeo
+                                                                    </option>
+                                                                    @foreach ($listaChequeo as $itemLista)
+                                                                        <option value="{{ $itemLista->id }}">
+                                                                            {{ $itemLista->lista_chequeo }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group">
+                                                                <select
+                                                                    class="form-control select2 selectSearch evaluadoSearch">
+                                                                    <option value="">Buscar por el evaluado</option>
+                                                                    @foreach ($evaluados as $itemEvaluado)
+                                                                        @if (isset($itemEvaluado->id))
+                                                                            <option value="{{ $itemEvaluado->id }}">
+                                                                                {{ $itemEvaluado->evaluado }}</option>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group">
+                                                                <select
+                                                                    class="form-control select2 selectSearch evaluadorSearch">
+                                                                    <option value="">Buscar por el evaluador</option>                                                                    
+                                                                    @foreach ($evaluadores as $itemEvaluador)
+                                                                        <option value="{{ $itemEvaluador->id }}">
+                                                                            {{ $itemEvaluador->evaluador }}</option>
+                                                                    @endforeach
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
                                                         <!--
                                                             <div class="col-lg-3">
-                                                                    <div class="form-group">
-                                                                        <select
-                                                                            class="form-control select2 selectSearch listaSearch">
-                                                                            <option value="">Buscar por lista de chequeo
+                                                                <div class="form-group">
+                                                                    <select
+                                                                        class="form-control select2 selectSearch empresaSearch">
+                                                                        <option value="">Buscar por la empresa</option>
+                                                                        @foreach ($entidadEvaluada as $itemEntidadEvaluada)
+    <option
+                                                                                value="{{ $itemEntidadEvaluada->ID_ENTIDAD_EVALUADA }}">
+                                                                                {{ $itemEntidadEvaluada->entidad_evaluada }}
                                                                             </option>
-                                                                        </select>
-                                                                    </div>
+    @endforeach
+                                                                    </select>
                                                                 </div>
-
-                                                                <div class="col-lg-3">
-                                                                    <div class="form-group">
-                                                                        <select
-                                                                            class="form-control select2 selectSearch evaluadoSearch">
-                                                                            <option value="">Buscar por el evaluado</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-3">
-                                                                    <div class="form-group">
-                                                                        <select
-                                                                            class="form-control select2 selectSearch evaluadorSearch">
-                                                                            <option value="">Buscar por el evaluador</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-3">
-                                                                    <div class="form-group">
-                                                                        <select
-                                                                            class="form-control select2 selectSearch empresaSearch">
-                                                                            <option value="">Buscar por la empresa</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-3">
-                                                                    <div class="form-group">
-                                                                        <button type="button"
-                                                                            class="btn btn-primary waves-effect waves-light buscarBoton"><i
-                                                                                class="fa fa-search"></i> Buscar</button>
-                                                                        <button type="button"
-                                                                            class="btn btn-primary waves-effect waves-light restablecerBoton"><i
-                                                                                class="mdi mdi-autorenew"></i> Restablecer</button>
-                                                                    </div>
-                                                                </div>
+                                                            </div>
                                                             -->
+
+                                                        <div class="col-lg-3">
+                                                            <div class="form-group">
+                                                                <button type="button"
+                                                                    class="btn btn-primary waves-effect waves-light buscarBoton"><i
+                                                                        class="fa fa-search"></i> Buscar</button>
+                                                                <button type="button"
+                                                                    class="btn btn-primary waves-effect waves-light restablecerBoton"><i
+                                                                        class="mdi mdi-autorenew"></i> Restablecer</button>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
 
