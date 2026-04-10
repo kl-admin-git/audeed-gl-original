@@ -48,13 +48,13 @@
     background: url(../../images/fondologin.jpg);
 }
 
-table thead 
-{
+table:not(.table-condensed) thead {
   background: #1C2E35;
   color: #FFFFFF;
   text-align: center;
   border-bottom: 10px solid #fff;
 }
+
 .table td, .table th
 {
   border-color:transparent!important;

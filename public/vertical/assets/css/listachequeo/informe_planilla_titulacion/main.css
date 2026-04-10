@@ -82,3 +82,13 @@
     font-size: 2.5rem;
     color: #4FB648;
 }
+
+[data-toggle="collapse"] .fa:before 
+{  
+    content: "\f0d7";
+}
+
+[data-toggle="collapse"].collapsed .fa:before 
+{
+    content: "\f0d8";
+}
