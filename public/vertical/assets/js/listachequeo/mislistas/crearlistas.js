@@ -2368,5 +2368,19 @@ $('.cancelarPopUpCreacionEtiqueta').on('click', OnClickCancelarCreacionEtiqueta)
 $('.crearAccionEtiqueta').on('click', OnClickAgregarEtiqueta);
 
 $(document).on('input', '.input-number', function () {
-    this.value = this.value.replace(/[^0-9]/g, '');
+    let value = this.value;
+
+    // permitir números, coma y punto
+    value = value.replace(/[^0-9.,]/g, '');
+
+    // convertir comas a punto
+    value = value.replace(/,/g, '.');
+
+    // permitir solo un punto decimal
+    const parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    this.value = value;
 });
