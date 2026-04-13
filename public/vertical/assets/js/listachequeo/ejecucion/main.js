@@ -2660,3 +2660,21 @@ $('.guardarRespuestaTiempo').on('click', OnClickGuardarRespuestaTiempo);
 $('.cancelarPopUpRespuestaTiempo').on('click', OnClickPopUpRespuestaCerrarTiempo);
 $('.guardarRespuestaFecha').on('click', OnClickGuardarRespuestaFecha);
 $('.cancelarPopUpRespuestaFecha').on('click', OnClickPopUpRespuestaCerrarFecha);
+
+$(document).on('input', '.input-number-d', function () {
+    let value = this.value;
+
+    // permitir números, coma y punto
+    value = value.replace(/[^0-9.,]/g, '');
+
+    // convertir comas a punto
+    value = value.replace(/,/g, '.');
+
+    // permitir solo un punto decimal
+    const parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    this.value = value;
+});
