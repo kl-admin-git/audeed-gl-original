@@ -52,6 +52,7 @@
                                                             <h3 style="color:#F3A03F">Lista de chequeo terminada</h3>
                                                         </td>
                                                     </tr>
+                                                    <!--
                                                     <tr
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block"
@@ -60,6 +61,7 @@
                                                             <p>Hola {{ $usuarioNombre }},</p>
                                                         </td>
                                                     </tr>
+                                                    -->
                                                     <tr
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block"
