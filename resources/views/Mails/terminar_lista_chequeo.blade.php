@@ -29,11 +29,13 @@
                                                             <h3 style="color:#F3A03F">Lista de chequeo terminada</h3>                                                            
                                                         </td>
                                                     </tr>
+                                                    <!--
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
                                                             <p>Hola {{ $usuarioNombre }},</p>
                                                         </td>
                                                     </tr>
+                                                    -->
                                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
                                                             <p>Se ha realizado una la lista de chequeo de <b>{{ $nombre }}</b> con resultado final de <b>{{ $resultado  }}%</b> <!--, se generaron <b>{{ $cantidadPlanAccion }}</b> plan de acción--> y fue evaluada por <b>{{ $usuarioNombre }}</b>.</p>
