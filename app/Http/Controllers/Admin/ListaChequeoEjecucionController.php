@@ -983,7 +983,7 @@ class ListaChequeoEjecucionController extends Controller
     }
 
     public function FinalizarListaChequeo(Request $request)
-    {        
+    {
         $evaluadoId = $request->get('evaluadoId');
         $latitud = $request->get('latitud');
         $longitud = $request->get('longitud');
@@ -1009,11 +1009,12 @@ class ListaChequeoEjecucionController extends Controller
 
         $respuestaUpdate = $this->listaEjecutada->where('id', '=', $idListaChequeoEjec)->update($arrayActualizar);
 
-        $this->FuncionEnvioDeCorreoListaTerminada($idListaChequeoEjec);
-        $this->FuncionEnvioDeCorreoRespuestasRango($request->respuestasRango, $idListaChequeoEjec);
+        $this->FuncionEnvioDeCorreoListaTerminada($idListaChequeoEjec);        
 
-        
-       
+        if ($request->respuestasRango != null) {
+            $this->FuncionEnvioDeCorreoRespuestasRango($request->respuestasRango, $idListaChequeoEjec);
+        }
+
         return $this->FinalizarRetorno(
             206,
             $this->MensajeRetorno('', 206, 'Lista de chequeo finalizada')
@@ -1036,8 +1037,8 @@ class ListaChequeoEjecucionController extends Controller
             ->whereIn('lcer.pregunta_id', $ids)
             ->where('lcer.lista_chequeo_ejec_id', $idListaChequeoEjec)
             ->get();
-            
-            $listaDeChequeo = $this->listaEjecutada
+
+        $listaDeChequeo = $this->listaEjecutada
             ->select(
                 'lista_chequeo_ejecutadas.*',
                 'u.nombre_completo AS NOMBRE_USUARIO'
@@ -1076,7 +1077,7 @@ class ListaChequeoEjecucionController extends Controller
             array_push($arrayCorreos, $usuarioResponsableEmpresa->correo);
         }
 
-        \Mail::to($arrayCorreos)->send(new MailRangoListaChequeo($data, $listaDeChequeo));           
+        \Mail::to($arrayCorreos)->send(new MailRangoListaChequeo($data, $listaDeChequeo));
     }
 
     public function FuncionEnvioDeCorreoListaTerminada($idListaChequeoEjec)
