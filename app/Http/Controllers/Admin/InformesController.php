@@ -1652,38 +1652,71 @@ class InformesController extends Controller
 
     private function SimularDatosPlanillaTitulacion($paginacion = null, $filtros = null)
     {
-
-
         $id_auditoria = 153;
+        if (isset($filtros) && !empty($filtros->filtro_lista_chequeo)) {
+            $id_auditoria = $filtros->filtro_lista_chequeo;
+        }
+
         $data_auditoria = \DB::table('lista_chequeo')
             ->where('id', '=', $id_auditoria)
             ->first();
 
         // Configuración de paginación
         $registrosPorPagina = 10;
-        $paginaActual = $paginacion ?? 1;
-        $offset = ($paginaActual - 1) * $registrosPorPagina;
+
+        $whereFiltros = "";
+
+        if (isset($filtros)) {
+            if (!empty($filtros->filtro_inicio_realizacion)) {
+                $whereFiltros .= " AND DATE(lce.finished_at) >= '{$filtros->filtro_inicio_realizacion}' ";
+            }
+
+            if (!empty($filtros->filtro_fin_realizacion)) {
+                $whereFiltros .= " AND DATE(lce.finished_at) <= '{$filtros->filtro_fin_realizacion}' ";
+            }
+
+            if (!empty($filtros->filtro_evaluado)) {
+                $whereFiltros .= " AND lce.evaluado_id = '{$filtros->filtro_evaluado}' ";
+            }
+
+            if (!empty($filtros->filtro_evaluador)) {
+                $whereFiltros .= " AND lce.usuario_id = '{$filtros->filtro_evaluador}' ";
+            }
+        }
 
         // Primero, obtener el total de registros únicos (listas ejecutadas)
         $totalRegistrosQuery = \DB::select(\DB::raw("
             SELECT COUNT(DISTINCT lce.id) as total
             FROM lista_chequeo_ejecutadas lce 
             INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
-            WHERE lc.id = {$id_auditoria}
+            WHERE lc.id = {$id_auditoria} {$whereFiltros}
         "));
 
         $totalRegistros = $totalRegistrosQuery[0]->total ?? 0;
         $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
 
-        // Obtener los IDs de las listas ejecutadas para esta página
-        $listaEjectIdsQuery = \DB::select(\DB::raw("
-            SELECT DISTINCT lce.id
-            FROM lista_chequeo_ejecutadas lce 
-            INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
-            WHERE lc.id = {$id_auditoria}
-            ORDER BY lce.id ASC
-            LIMIT {$registrosPorPagina} OFFSET {$offset}
-        "));
+        // Obtener los IDs de las listas ejecutadas para esta página/totalidad
+        if ($paginacion === null) {
+            $listaEjectIdsQuery = \DB::select(\DB::raw("
+                SELECT DISTINCT lce.id
+                FROM lista_chequeo_ejecutadas lce 
+                INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
+                WHERE lc.id = {$id_auditoria} {$whereFiltros}
+                ORDER BY lce.id ASC
+            "));
+        } else {
+            $paginaActual = $paginacion;
+            $offset = ($paginaActual - 1) * $registrosPorPagina;
+
+            $listaEjectIdsQuery = \DB::select(\DB::raw("
+                SELECT DISTINCT lce.id
+                FROM lista_chequeo_ejecutadas lce 
+                INNER JOIN lista_chequeo lc ON lce.lista_chequeo_id = lc.id
+                WHERE lc.id = {$id_auditoria} {$whereFiltros}
+                ORDER BY lce.id ASC
+                LIMIT {$registrosPorPagina} OFFSET {$offset}
+            "));
+        }
 
         $listaEjectIds = array_map(function ($item) {
             return $item->id;
@@ -1706,19 +1739,6 @@ class InformesController extends Controller
 
         // Convertir array de IDs a string para la consulta
         $idsString = implode(',', $listaEjectIds);
-
-        $whereFiltros = "";
-
-        if (isset($filtros)) {
-            if (!empty($filtros->filtro_inicio_realizacion)) {
-                $whereFiltros .= " AND DATE(lce.finished_at) >= '{$filtros->filtro_inicio_realizacion}' ";
-            }
-
-            if (!empty($filtros->filtro_fin_realizacion)) {
-                $whereFiltros .= " AND DATE(lce.finished_at) <= '{$filtros->filtro_fin_realizacion}' ";
-            }
-        }
-
 
         // Ahora obtener todos los datos de esas listas ejecutadas
         $datosQuery = \DB::select(\DB::raw("
@@ -1744,7 +1764,6 @@ class InformesController extends Controller
             INNER JOIN usuario u ON lce.usuario_id = u.id
             LEFT JOIN usuario us ON lce.revisado = us.id
             WHERE lc.id = {$id_auditoria} AND lce.id IN ({$idsString})
-            $whereFiltros
             ORDER BY lce.id ASC, p.id ASC
         "));
 
@@ -1840,7 +1859,8 @@ class InformesController extends Controller
     {
         setlocale(LC_ALL, 'es_ES.utf8');
 
-        $data = $this->SimularDatosPlanillaTitulacion();
+        $filtros = json_decode($request->get('filtros_busqueda'));
+        $data = $this->SimularDatosPlanillaTitulacion(null, $filtros);
 
         return \Excel::download(new PlanillaTitulacionExports($data), 'planilla_titulacion.xlsx');
     }

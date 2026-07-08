@@ -34,6 +34,9 @@ $(document).ready(function () {
 
 
     $('#btn-descargar-excel').on('click', function () {
+        let filtros = JSON.stringify(arrayFiltros);
+        $('#filtros_busqueda').val('');
+        $('#filtros_busqueda').val(filtros);
         $('#descargar-excel-planAccion').submit();
     });
     IniciarVista();
