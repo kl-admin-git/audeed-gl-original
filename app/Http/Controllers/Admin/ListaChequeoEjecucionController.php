@@ -1011,8 +1011,11 @@ class ListaChequeoEjecucionController extends Controller
 
         $this->FuncionEnvioDeCorreoListaTerminada($idListaChequeoEjec);        
 
-        if ($request->respuestasRango != null) {
-            $this->FuncionEnvioDeCorreoRespuestasRango($request->respuestasRango, $idListaChequeoEjec);
+        if(auth()->user()->cuenta_principal_id == 147)
+        {
+            if ($request->respuestasRango != null) {
+                $this->FuncionEnvioDeCorreoRespuestasRango($request->respuestasRango, $idListaChequeoEjec);
+            }
         }
 
         return $this->FinalizarRetorno(
