@@ -562,6 +562,7 @@
                             </div>
                         </div>
 
+                        @if(auth()->user()->cuenta_principal_id == 147)
                         <div class="col-lg-12">
                             <div class="card-header subtituloEncabezado">
                                 <p class="m-0">
@@ -580,6 +581,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
 
 
                     </div>

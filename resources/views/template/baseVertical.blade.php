@@ -30,6 +30,7 @@
     };
 
     $email = auth()->user()->correo;
+    $main_account = auth()->user()->cuenta_principal_id;
     //PAGOS PAYU
 
     //TESTEO
