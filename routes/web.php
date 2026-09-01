@@ -298,6 +298,14 @@ Route::get('/informes/planilla_titulacion', ['as' => 'planilla_titulacion', 'use
 Route::post('/listachequeo/informe_planilla_titulacion/GetDataInit', ['as' => 'get_data_init_planilla_titulacion', 'uses' => 'Admin\InformesController@GetDataInitPlanillaTitulacion']);
 Route::post('/listachequeo/informe_planilla_titulacion/descargar-excel', ['as' => 'descargar_excel_planilla_titulacion', 'uses' => 'Admin\InformesController@descargarExcelPlanillaTitulacion']);
 
+//INFORME ESPECIAL GONVARRI
+Route::get('/informes/planilla_titulacion_gonvarri', ['as' => 'planilla_titulacion_gonvarri', 'uses' => 'Admin\InformesController@IndexPlanillaTitulacionGonvarri']);
+Route::post('/listachequeo/informe_planilla_titulacion/GetDataInit_gonvarri', ['as' => 'get_data_init_planilla_titulacion_gonvarri', 'uses' => 'Admin\InformesController@GetDataInitPlanillaTitulacionGonvarri']);
+Route::post('/listachequeo/informe_planilla_titulacion/descargar-excel_gonvarri', ['as' => 'descargar_excel_planilla_titulacion_gonvarri', 'uses' => 'Admin\InformesController@descargarExcelPlanillaTitulacionGonvarri']);
+
+
+
+
 
 
 //CUENTA

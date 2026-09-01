@@ -200,7 +200,7 @@ class RegisterController extends Controller
             'pais_consecutivo' => $paisCodigo,
             'celular_numero' => $telefono,
             'sector_id' => $sector,
-            'plan_id' => NULL 
+            'plan_id' => 1 
         ]);
 
         if($cuentaPrincipal->save())

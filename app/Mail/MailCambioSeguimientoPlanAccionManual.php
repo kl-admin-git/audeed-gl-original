@@ -23,7 +23,7 @@ class MailCambioSeguimientoPlanAccionManual extends Mailable
         $usuario = \DB::table('usuario')->where('id','=',$this->idUsuario)->first();
         $this->nombreUsuario = $usuario->nombre_completo;
 
-        $address = 'audiid@audiid.co';
+        $address = 'notificaciones@westquimica.com';
         $name = "Apptiva";
         return $this
         ->from($address, $name)
