@@ -31,7 +31,7 @@ class MailCrearCuenta extends Mailable
      */
     public function build()
     {
-        $address = 'soporte@apptiva.com';
+        $address = 'notificaciones@westquimica.com';
         $name = "Apptiva";
         return $this
         ->from($address, $name)
