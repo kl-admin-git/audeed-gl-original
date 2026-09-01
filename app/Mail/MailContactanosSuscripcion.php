@@ -31,7 +31,7 @@ class MailContactanosSuscripcion extends Mailable
      */
     public function build()
     {
-        $address = 'audiid@audiid.co';
+        $address = 'notificaciones@westquimica.com';
         $name = "Apptiva";
         return $this
         ->from($address, $name)

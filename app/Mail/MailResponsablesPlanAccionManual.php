@@ -24,7 +24,7 @@ class MailResponsablesPlanAccionManual extends Mailable
         {
             $this->nombre = $item->nombre;
         }
-        $address = 'audiid@audiid.co';
+        $address = 'notificaciones@westquimica.com';
         $name = "Apptiva";
         return $this
         ->from($address, $name)
