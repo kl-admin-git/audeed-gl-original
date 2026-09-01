@@ -1907,7 +1907,7 @@ class InformesController extends Controller
 
     private function SimularDatosPlanillaTitulacionGonvarri($paginacion = null, $filtros = null)
     {
-        $id_auditoria = 154;
+        $id_auditoria = 158;
        
         if (isset($filtros) && !empty($filtros->filtro_lista_chequeo)) {
             $id_auditoria = $filtros->filtro_lista_chequeo;
