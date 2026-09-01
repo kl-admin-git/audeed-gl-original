@@ -91,6 +91,7 @@
                     @if ($main_account == 147)
                     <li><a href="{{ route('planilla_titulacion') }}">Planilla titulación</a></li>
                     @endif
+                    <li><a href="{{ route('planilla_titulacion_gonvarri') }}">Planilla titulación</a></li>
                     {{-- <li><a href="{{ route('dotacion_practicas') }}">Dotación y prácticas</a></li>
                     <li><a href="{{ route('verificacion_balanzas') }}">Verificación de balanzas</a></li>
                     <li><a href="{{ route('equipos_frios') }}">Temperatura equipos frios</a></li> --}}

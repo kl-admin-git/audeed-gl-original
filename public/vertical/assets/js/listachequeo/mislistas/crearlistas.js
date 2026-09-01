@@ -53,6 +53,7 @@ $(document).ready(function () {
             // Forbid next action on "Warning" step if the user is to young
             if (currentIndex < newIndex) //AVANZA
             {
+                 
                 switch (currentIndex) {
                     case 0: // VALIDACION PRIMER STEP
                         if ($('#preguntaTextArea').val() == '') {
@@ -193,6 +194,7 @@ $(document).ready(function () {
 
                         if(idRespuestaPonPredeterminada == 4) // SI ES MULTIPLE
                         {
+                            
                             let hijosContenedorMultiple = $('.cuerpoConfiguracionRespuesas').find(".row");
                             steps.stepsEnviar.stepTres.personalizadas = [];
                             let vaciosTexto = false;
@@ -256,29 +258,31 @@ $(document).ready(function () {
                                 return false;
                             }
                         } else if(idRespuestaPonPredeterminada == 15){
+                           
                             let hijosContenedorMultiple = $('.cuerpoConfiguracionRespuesas').find(".row");
-
+                            steps.stepsEnviar.stepTres.personalizadas = [];
                             let vaciosTexto = false;
-
+                            let valorPersonalizadoMin = 0
+                            let valorPersonalizadoMax = 0
                             $.each(hijosContenedorMultiple, function (indexInArray, itemHijo) {
-                                let valorPersonalizadoMin = $(itemHijo).find('.valorPersonalizadoMin').val();
-                                let valorPersonalizadoMax = $(itemHijo).find('.valorPersonalizadoMax').val();
+                                 valorPersonalizadoMin = $(itemHijo).find('.valorPersonalizadoMin').val();
+                                 valorPersonalizadoMax = $(itemHijo).find('.valorPersonalizadoMax').val();
 
                                 if (valorPersonalizadoMin == "" && valorPersonalizadoMax == "") {
                                     vaciosTexto = true;
-                                }else{                                    
-                                    steps.stepsEnviar.stepTres.personalizadas.push(
-                                        {
-                                            idPredeterminado: 15,
-                                            valorPersonalizado: "NÚMERICO",
-                                            valorPredeterminado: "NÚMERICO",
-                                            valorMin: valorPersonalizadoMin,
-                                            valorMax: valorPersonalizadoMax
-                                        });
                                 }
                             });
+                            steps.stepsEnviar.stepTres.personalizadas.push(
+                                {
+                                    idPredeterminado: 15,
+                                    valorPersonalizado: "NÚMERICO",
+                                    valorPredeterminado: "NÚMERICO",
+                                    valorMin: valorPersonalizadoMin,
+                                    valorMax: valorPersonalizadoMax
+                                });
 
-
+                           
+                            // return
                             if (vaciosTexto) {
                                 toastr.warning("No debe haber campos vacíos en los campos minimo y maximo");
                                 return false;
@@ -286,6 +290,7 @@ $(document).ready(function () {
                         }
                         else
                         {
+                            
                             steps.stepsEnviar.stepTres.personalizadas = [];
 
                             $.each(hijosContenedor, function (indexInArray, itemHijo) {
@@ -365,7 +370,7 @@ $(document).ready(function () {
         },
         onFinishing: function (event, currentIndex) {
             let acciones = $('.contenedorOpcRespuestaStepFinal').find('.cuerpoRespuestaStep');
-
+           
             steps.stepsEnviar.stepCuatro.opcionesRespuesta = [];
 
             let validarPlanAccion = false;
@@ -452,6 +457,7 @@ $(document).ready(function () {
                         CargandoNoMostrar();
                         switch (data.codigoRespuesta) {
                             case 200:
+                                
                                 toastr.success(data.mensaje);
                                 TraerCategoriasYPreguntas();
                                 OnClickCancelarPregunta();
@@ -956,7 +962,7 @@ function ComponenteOpcionesDeRespuesta(idOpcionRespuesta, icono, nombre) {
 
 function ComponentePersonalizacion(respuestas, tipoRespuesta = 0) {
     let string = '';
-
+   
     if (tipoRespuesta == 4) //TIPO RESPUESTA MULTIPLE (M)
     {
         let stringRespuestas = "";
